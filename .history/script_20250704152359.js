@@ -196,6 +196,14 @@ window.addEventListener('DOMContentLoaded', async function() {
   await loadPortfolioLangDict();
   buildPortfolioTiles();
   
+  // Проверяем загрузку Telegram конфигурации
+  console.log('Checking Telegram config...');
+  if (window.TELEGRAM_CONFIG) {
+    console.log('Telegram config loaded:', window.TELEGRAM_CONFIG);
+  } else {
+    console.warn('Telegram config not found. Form submission will not work.');
+  }
+  
   // Обработчик формы
   const contactForm = document.querySelector('.contact-form');
   if (contactForm) {

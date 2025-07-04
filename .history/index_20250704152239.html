@@ -260,6 +260,17 @@
       .carousel-arrow:hover { opacity: 1; }
     </style>
     <script src="config.js"></script>
+    <script>
+      // Ранняя диагностика загрузки конфигурации
+      console.log('=== EARLY CONFIG CHECK ===');
+      console.log('Config loaded:', window.TELEGRAM_CONFIG);
+      if (window.TELEGRAM_CONFIG) {
+        console.log('Bot token exists:', !!window.TELEGRAM_CONFIG.botToken);
+        console.log('Chat ID exists:', !!window.TELEGRAM_CONFIG.chatId);
+      } else {
+        console.error('TELEGRAM_CONFIG is undefined!');
+      }
+    </script>
     <script src="script.js" type="module"></script>
 </body>
 </html> 

@@ -19,6 +19,9 @@ export async function sendToTelegram(data) {
 
   if (!botToken || !chatId || botToken === 'YOUR_BOT_TOKEN_HERE' || botToken === '${{ secrets.TELEGRAM_BOT_TOKEN }}') {
     console.error('Telegram config missing or not configured properly.');
+    console.error('Config object:', config);
+    console.error('Bot token:', botToken);
+    console.error('Chat ID:', chatId);
     throw new Error('Telegram bot not configured. Please check config.js file.');
   }
 
@@ -35,6 +38,9 @@ export async function sendToTelegram(data) {
     `.trim();
 
   const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+  console.log('Sending to URL:', url);
+  console.log('Message text:', text);
 
   const res = await fetch(url, {
     method: 'POST',
@@ -53,5 +59,6 @@ export async function sendToTelegram(data) {
   }
 
   const result = await res.json();
+  console.log('Telegram API response:', result);
   return result;
 } 

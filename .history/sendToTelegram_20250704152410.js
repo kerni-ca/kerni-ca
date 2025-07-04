@@ -53,5 +53,6 @@ export async function sendToTelegram(data) {
   }
 
   const result = await res.json();
+  console.log('Telegram API response:', result);
   return result;
 } 

@@ -180,14 +180,25 @@ async function handleFormSubmit(event) {
   
   console.log('6. Data prepared:', data);
   
+  console.log('7. Checking Telegram config...');
+  console.log('window.TELEGRAM_CONFIG:', window.TELEGRAM_CONFIG);
+  console.log('Config type:', typeof window.TELEGRAM_CONFIG);
+  
+  if (window.TELEGRAM_CONFIG) {
+    console.log('Config botToken:', window.TELEGRAM_CONFIG.botToken);
+    console.log('Config chatId:', window.TELEGRAM_CONFIG.chatId);
+  }
+  
   try {
+    console.log('8. Calling sendToTelegram...');
     await sendToTelegram(data);
-    console.log('7. Message sent successfully!');
+    console.log('9. Message sent successfully!');
     alert('Thank you! Your message has been sent successfully.');
     form.reset();
   } catch (error) {
-    console.error('8. Error occurred:', error);
+    console.error('10. Error occurred:', error);
     console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
     alert('Sorry, there was an error sending your message. Please try again.');
   }
 }
@@ -195,6 +206,14 @@ async function handleFormSubmit(event) {
 window.addEventListener('DOMContentLoaded', async function() {
   await loadPortfolioLangDict();
   buildPortfolioTiles();
+  
+  // Проверяем загрузку Telegram конфигурации
+  console.log('Checking Telegram config...');
+  if (window.TELEGRAM_CONFIG) {
+    console.log('Telegram config loaded:', window.TELEGRAM_CONFIG);
+  } else {
+    console.warn('Telegram config not found. Form submission will not work.');
+  }
   
   // Обработчик формы
   const contactForm = document.querySelector('.contact-form');

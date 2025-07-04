@@ -36,6 +36,9 @@ export async function sendToTelegram(data) {
 
   const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
+  console.log('Sending to URL:', url);
+  console.log('Message text:', text);
+
   const res = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -53,5 +56,6 @@ export async function sendToTelegram(data) {
   }
 
   const result = await res.json();
+  console.log('Telegram API response:', result);
   return result;
 } 

@@ -1,0 +1,52 @@
+{
+  "name": "kerni-static-site",
+  "version": "1.0.0",
+  "description": "Professional epoxy floor installation website - static multilingual site",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "npm run serve",
+    "serve": "npx http-server . -p 3000 -o",
+    "serve-build": "npx http-server build -p 3000 -o",
+    "clean": "node -e \"const fs = require('fs'); if (fs.existsSync('build')) { fs.rmSync('build', { recursive: true }); console.log('Build directory cleaned'); } else { console.log('Build directory does not exist'); }\"",
+    "preview": "npm run build && npm run serve-build"
+  },
+  "keywords": [
+    "epoxy",
+    "floors",
+    "montreal",
+    "static-site",
+    "multilingual",
+    "construction",
+    "industrial"
+  ],
+  "author": "KERNI Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/kerni.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "files": [
+    "index.html",
+    "styles.css",
+    "script.js",
+    "lang.js",
+    "sendToTelegram.js",
+    "build.js",
+    "config.example.js",
+    "en.json",
+    "fr.json",
+    "images/",
+    "build/"
+  ],
+  "homepage": "https://your-domain.com",
+  "bugs": {
+    "url": "https://github.com/your-username/kerni/issues"
+  }
+} 

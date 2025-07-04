@@ -1,13 +1,13 @@
-// Пример конфигурационного файла
-// Скопируйте этот файл как config.js и замените на ваши данные
+// Example configuration file
+// Copy this file as config.js and replace with your data
 window.TELEGRAM_CONFIG = {
   botToken: 'YOUR_BOT_TOKEN_HERE',
   chatId: 'YOUR_CHAT_ID_HERE'
 };
 
-// Инструкция:
-// 1. Создайте бота через @BotFather в Telegram
-// 2. Получите токен бота
-// 3. Добавьте бота в нужный чат
-// 4. Получите chat_id (можно через @userinfobot)
-// 5. Замените значения выше на реальные 
+// Instructions:
+// 1. Create a bot via @BotFather in Telegram
+// 2. Get the bot token
+// 3. Add the bot to the desired chat
+// 4. Get the chat_id (can be done via @userinfobot)
+// 5. Replace the values above with real ones 

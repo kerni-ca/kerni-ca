@@ -1,0 +1,149 @@
+const fs = require('fs');
+const path = require('path');
+
+// Language configuration
+const languages = {
+  fr: {
+    lang: 'fr',
+    canonical: '/build/fr/',
+    alternateEn: '/build/en/',
+    alternateFr: '/build/fr/'
+  },
+  en: {
+    lang: 'en',
+    canonical: '/build/en/',
+    alternateEn: '/build/en/',
+    alternateFr: '/build/fr/'
+  }
+};
+
+// Load translations
+function loadTranslations(lang) {
+  const jsonPath = path.join(__dirname, lang + '.json');
+  return JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+}
+
+function readTemplate() {
+  return fs.readFileSync('index.html', 'utf8');
+}
+
+function generateHTML(lang, config) {
+  let html = readTemplate();
+  const translations = loadTranslations(lang);
+  
+  // Replace lang attribute
+  html = html.replace(/<html lang="[^"]*">/, `<html lang="${config.lang}">`);
+  
+  // Replace title
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${translations.meta_title}</title>`);
+  
+  // Replace meta description
+  html = html.replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${translations.meta_description}">`);
+  
+  // Replace meta keywords
+  html = html.replace(/<meta name="keywords" content="[^"]*">/, `<meta name="keywords" content="${translations.meta_keywords}">`);
+  
+  // Replace Open Graph tags
+  html = html.replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${translations.og_title}">`);
+  html = html.replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${translations.og_description}">`);
+  
+  // Replace Twitter tags
+  html = html.replace(/<meta property="twitter:title" content="[^"]*">/, `<meta property="twitter:title" content="${translations.twitter_title}">`);
+  html = html.replace(/<meta property="twitter:description" content="[^"]*">/, `<meta property="twitter:description" content="${translations.twitter_description}">`);
+  
+  // Remove lang.js
+  html = html.replace(/<script src="[^"]*lang\.js[^"]*"><\/script>/, '');
+  
+  // Fix file paths for subdirectories
+  html = html.replace(/href="styles\.css"/g, 'href="../styles.css"');
+  html = html.replace(/src="config\.js"/g, 'src="../config.js"');
+  html = html.replace(/src="script\.js"/g, 'src="../script.js"');
+  html = html.replace(/src="sendToTelegram\.js"/g, 'src="../sendToTelegram.js"');
+  html = html.replace(/src="images\//g, 'src="../images/');
+  
+  // Apply all translations
+  for (const [key, value] of Object.entries(translations)) {
+    // Replace content of elements with data-i18n attributes
+    const i18nRegex = new RegExp(`data-i18n="${key}"[^>]*>([^<]*)`, 'g');
+    html = html.replace(i18nRegex, (match, originalText) => {
+      return match.replace(originalText, value);
+    });
+    
+    // Replace placeholder in input/textarea
+    html = html.replace(new RegExp(`placeholder="${key}"`, 'g'), `placeholder="${value}"`);
+    
+    // Replace alt attributes
+    html = html.replace(new RegExp(`data-i18n-alt="${key}"`, 'g'), `alt="${value}"`);
+    
+    // Replace text content that matches the key
+    html = html.replace(new RegExp(`>${key}<`, 'g'), `>${value}<`);
+  }
+  
+  // Remove all data-i18n attributes
+  html = html.replace(/data-i18n="[^"]*"/g, '');
+  html = html.replace(/data-i18n-alt="[^"]*"/g, '');
+  
+  // canonical and hreflang
+  const headEnd = html.indexOf('</head>');
+  const seoTags = `\n    <link rel="canonical" href="${config.canonical}">\n    <link rel="alternate" hreflang="en" href="${config.alternateEn}">\n    <link rel="alternate" hreflang="fr" href="${config.alternateFr}">\n    <link rel="alternate" hreflang="x-default" href="${config.alternateEn}">\n`;
+  html = html.slice(0, headEnd) + seoTags + html.slice(headEnd);
+  
+  // Add language switch button with correct redirect
+  const nextLang = lang === 'en' ? 'fr' : 'en';
+  const langButton = `<button id="lang-switch" class="lang-btn" onclick="window.location.href='/build/${nextLang}/'" title="${lang === 'en' ? 'Passer en français' : 'Switch to English'}">${nextLang.toUpperCase()}</button>`;
+  html = html.replace(/<button id="lang-switch"[^>]*><\/button>/, langButton);
+  
+  return html;
+}
+
+function copyRecursiveSync(src, dest) {
+  if (fs.existsSync(src) && fs.lstatSync(src).isDirectory()) {
+    if (!fs.existsSync(dest)) fs.mkdirSync(dest);
+    fs.readdirSync(src).forEach(child => {
+      copyRecursiveSync(path.join(src, child), path.join(dest, child));
+    });
+  } else {
+    fs.copyFileSync(src, dest);
+  }
+}
+
+function buildPages() {
+  const buildDir = 'build';
+  if (fs.existsSync(buildDir)) {
+    try {
+      fs.rmSync(buildDir, { recursive: true });
+    } catch (error) {
+      console.log('⚠️ Failed to delete build folder, continuing...');
+    }
+  }
+  if (!fs.existsSync(buildDir)) {
+    fs.mkdirSync(buildDir);
+  }
+
+  // Copy resources
+  ['styles.css', 'script.js', 'config.js', 'sendToTelegram.js'].forEach(file => {
+    if (fs.existsSync(file)) fs.copyFileSync(file, path.join(buildDir, file));
+  });
+  if (fs.existsSync('images')) copyRecursiveSync('images', path.join(buildDir, 'images'));
+
+  // Generate pages for each language
+  Object.entries(languages).forEach(([lang, config]) => {
+    const langDir = path.join(buildDir, lang);
+    if (!fs.existsSync(langDir)) fs.mkdirSync(langDir);
+    const html = generateHTML(lang, config);
+    fs.writeFileSync(path.join(langDir, 'index.html'), html);
+    console.log(`✅ Created page: ${langDir}/index.html`);
+  });
+
+  // index.html redirect
+  const redirectHtml = `<!DOCTYPE html><html lang="fr"><head><meta http-equiv="refresh" content="0; url=/build/fr/"><script>window.location.replace('/build/fr/');</script></head><body></body></html>`;
+  fs.writeFileSync(path.join(buildDir, 'index.html'), redirectHtml);
+
+  console.log('🎉 Build completed!');
+  console.log('📁 File structure:');
+  console.log('   build/fr/index.html - French version (static)');
+  console.log('   build/en/index.html - English version (static)');
+  console.log('   build/index.html - Redirect to fr');
+}
+
+buildPages(); 

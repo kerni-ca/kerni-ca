@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,11 +21,16 @@
     <meta property="twitter:description" content="Professional epoxy floor installation in Montreal. High-quality materials, experienced craftsmen.">
     <meta property="twitter:image" content="https://malyarevich.github.io/kerni/images/header-bg.jpg">
     
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="lang.js"></script>
+    
+
+    <link rel="canonical" href="/build/en/">
+    <link rel="alternate" hreflang="en" href="/build/en/">
+    <link rel="alternate" hreflang="fr" href="/build/fr/">
+    <link rel="alternate" hreflang="x-default" href="/build/en/">
 </head>
 <body>
 
@@ -33,41 +38,41 @@
         <nav class="nav">
             <div class="logo">KERNI</div>
             <ul class="nav-links">
-                <li><a href="#about" data-i18n="nav_about">nav_about</a></li>
-                <li><a href="#services" data-i18n="nav_services">nav_services</a></li>
-                <li><a href="#portfolio" data-i18n="nav_portfolio">nav_portfolio</a></li>
-                <li><a href="#testimonials" data-i18n="nav_testimonials">nav_testimonials</a></li>
-                <li><a href="#partners" data-i18n="nav_partners">nav_partners</a></li>
-                <li><a href="#contact" data-i18n="nav_contact">nav_contact</a></li>
-                <li><button id="lang-switch" class="lang-btn"></button></li>
+                <li><a href="#about" >About Us</a></li>
+                <li><a href="#services" >Services</a></li>
+                <li><a href="#portfolio" >Portfolio</a></li>
+                <li><a href="#testimonials" >Testimonials</a></li>
+                <li><a href="#partners" >Partners</a></li>
+                <li><a href="#contact" >Contact</a></li>
+                <li><button id="lang-switch" class="lang-btn" onclick="window.location.href='/build/fr/'" title="Passer en français">FR</button></li>
             </ul>
         </nav>
         <div class="hero">
-            <h1 data-i18n="hero_title">hero_title</h1>
-            <p data-i18n="hero_subtitle">hero_subtitle</p>
-            <a href="#contact" class="cta-button" data-i18n="hero_cta">hero_cta</a>
+            <h1 >Modern Epoxy Floors</h1>
+            <p >Professional solutions for your space</p>
+            <a href="#contact" class="cta-button" >Get a consultation</a>
         </div>
     </header>
 
     <section id="about" class="about">
         <div class="container">
-            <h2 data-i18n="about_title">about_title</h2>
+            <h2 >About Us</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p data-i18n="about_text">about_text</p>
+                    <p >We are a team of professionals with many years of experience in creating epoxy coatings. Our mission is to transform spaces, making them not only beautiful but also functional.</p>
                 </div>
                 <div class="about-stats">
                     <div class="stat">
                         <span class="number">10+</span>
-                        <span class="label" data-i18n="about_years">about_years</span>
+                        <span class="label" >years of experience</span>
                     </div>
                     <div class="stat">
                         <span class="number">500+</span>
-                        <span class="label" data-i18n="about_projects">about_projects</span>
+                        <span class="label" >projects</span>
                     </div>
                     <div class="stat">
                         <span class="number">100%</span>
-                        <span class="label" data-i18n="about_guarantee">about_guarantee</span>
+                        <span class="label" >guarantee</span>
                     </div>
                 </div>
             </div>
@@ -76,19 +81,19 @@
 
     <section id="services" class="services">
         <div class="container">
-            <h2 data-i18n="services_title">services_title</h2>
+            <h2 >Our Services</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <h3 data-i18n="services_industrial">services_industrial</h3>
-                    <p data-i18n="services_industrial_desc">services_industrial_desc</p>
+                    <h3 >Industrial Floors</h3>
+                    <p >Durable and wear-resistant coatings for industrial premises</p>
                 </div>
                 <div class="service-card">
-                    <h3 data-i18n="services_decorative">services_decorative</h3>
-                    <p data-i18n="services_decorative_desc">services_decorative_desc</p>
+                    <h3 >Decorative Floors</h3>
+                    <p >Unique design solutions for commercial spaces</p>
                 </div>
                 <div class="service-card">
-                    <h3 data-i18n="services_anti">services_anti</h3>
-                    <p data-i18n="services_anti_desc">services_anti_desc</p>
+                    <h3 >Anti-slip Coatings</h3>
+                    <p >Safe solutions for public spaces</p>
                 </div>
             </div>
         </div>
@@ -96,7 +101,7 @@
 
     <section id="portfolio" class="portfolio">
         <div class="container">
-            <h2 data-i18n="portfolio_title">portfolio_title</h2>
+            <h2 >Our Works</h2>
             <div class="portfolio-tiles"></div>
         </div>
     </section>
@@ -119,49 +124,49 @@
             <div class="notification-icon">
                 <span id="notification-icon">✓</span>
             </div>
-            <h3 id="notification-title" data-i18n="notification_success_title">notification_success_title</h3>
-            <p id="notification-message" data-i18n="notification_success_message">notification_success_message</p>
-            <button id="notification-close" class="notification-btn" data-i18n="notification_ok">notification_ok</button>
+            <h3 id="notification-title" >Success!</h3>
+            <p id="notification-message" >Your message has been sent successfully.</p>
+            <button id="notification-close" class="notification-btn" >OK</button>
         </div>
     </div>
 
     <section id="testimonials" class="testimonials">
         <div class="container">
-            <h2 data-i18n="testimonials_title">testimonials_title</h2>
+            <h2 >Our Clients' Reviews</h2>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        <p data-i18n="testimonial_1">testimonial_1</p>
+                        <p >Excellent work! The floors turned out perfectly even and very beautiful. Thank you for your professionalism and attention to detail.</p>
                     </div>
                     <div class="testimonial-author">
-                        <img src="images/testimonials/1.jpg" alt="" data-i18n-alt="testimonial_1_alt">
+                        <img src="../images/testimonials/1.jpg" alt="" alt="Portrait of Jean Tremblay, resident of Montreal">
                         <div class="author-info">
-                            <h4 data-i18n="testimonial_1_name">testimonial_1_name</h4>
-                            <p data-i18n="testimonial_1_position">testimonial_1_position</p>
+                            <h4 >Jean Tremblay</h4>
+                            <p >Resident of Montreal</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        <p data-i18n="testimonial_2">testimonial_2</p>
+                        <p >They made a great floor in my garage and the hall looks amazing, the kids are delighted!</p>
                     </div>
                     <div class="testimonial-author">
-                        <img src="images/testimonials/2.jpg" alt="" data-i18n-alt="testimonial_2_alt">
+                        <img src="../images/testimonials/2.jpg" alt="" alt="Portrait of Marie Lefebvre, homeowner in Quebec">
                         <div class="author-info">
-                            <h4 data-i18n="testimonial_2_name">testimonial_2_name</h4>
-                            <p data-i18n="testimonial_2_position">testimonial_2_position</p>
+                            <h4 >Marie Lefebvre</h4>
+                            <p >Homeowner, Quebec</p>
                         </div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        <p data-i18n="testimonial_3">testimonial_3</p>
+                        <p >We have worked with the company several times. Always on top! Especially liked the quality of materials and speed of work.</p>
                     </div>
                     <div class="testimonial-author">
-                        <img src="images/testimonials/3.jpg" alt="" data-i18n-alt="testimonial_3_alt">
+                        <img src="../images/testimonials/3.jpg" alt="" alt="Portrait of Lucie Gagnon, entrepreneur in Montreal">
                         <div class="author-info">
-                            <h4 data-i18n="testimonial_3_name">testimonial_3_name</h4>
-                            <p data-i18n="testimonial_3_position">testimonial_3_position</p>
+                            <h4 >Lucie Gagnon</h4>
+                            <p >Entrepreneur, Montreal</p>
                         </div>
                     </div>
                 </div>
@@ -171,27 +176,27 @@
 
     <section id="partners" class="partners">
         <div class="container">
-            <h2 data-i18n="partners_title">partners_title</h2>
+            <h2 >Our Partners</h2>
             <div class="partners-grid">
                 <div class="partner-card">
-                    <img src="images/partners/1.jpg" alt="" data-i18n-alt="partner_1_alt">
+                    <img src="../images/partners/1.jpg" alt="" alt="Logo of BASF, world leader in chemical materials">
                     <h3>BASF</h3>
-                    <p data-i18n="partner_1_desc">partner_1_desc</p>
+                    <p >World leader in the production of chemical materials</p>
                 </div>
                 <div class="partner-card">
-                    <img src="images/partners/2.jpg" alt="" data-i18n-alt="partner_2_alt">
+                    <img src="../images/partners/2.jpg" alt="" alt="Logo of Sika, professional construction solutions">
                     <h3>Sika</h3>
-                    <p data-i18n="partner_2_desc">partner_2_desc</p>
+                    <p >Professional solutions for construction</p>
                 </div>
                 <div class="partner-card">
-                    <img src="images/partners/3.jpg" alt="" data-i18n-alt="partner_3_alt">
+                    <img src="../images/partners/3.jpg" alt="" alt="Logo of Mapei, innovative building materials">
                     <h3>Mapei</h3>
-                    <p data-i18n="partner_3_desc">partner_3_desc</p>
+                    <p >Innovative building materials</p>
                 </div>
                 <div class="partner-card">
-                    <img src="images/partners/4.jpg" alt="" data-i18n-alt="partner_4_alt">
+                    <img src="../images/partners/4.jpg" alt="" alt="Logo of Ardex, high-quality building mixes">
                     <h3>Ardex</h3>
-                    <p data-i18n="partner_4_desc">partner_4_desc</p>
+                    <p >High-quality building mixes</p>
                 </div>
             </div>
         </div>
@@ -199,27 +204,24 @@
 
     <section id="contact" class="contact">
         <div class="container">
-            <h2 data-i18n="contact_title">contact_title</h2>
+            <h2 >Contact Us</h2>
             <div class="contact-content">
                 <form class="contact-form">
-                    <input type="text" name="name" data-i18n="contact_name" placeholder="contact_name" required>
-                    <input type="tel" name="phone" data-i18n="contact_phone" placeholder="contact_phone" required>
-                    <input type="email" name="email" data-i18n="contact_email" placeholder="contact_email" required>
-                    <textarea name="message" data-i18n="contact_message" placeholder="contact_message" required></textarea>
-                    <button type="submit" class="submit-button" data-i18n="contact_send">contact_send</button>
+                    <input type="text" name="name"  placeholder="Your Name" required>Your Name<input type="tel" name="phone"  placeholder="Phone" required>Phone<input type="email" name="email"  placeholder="Email" required>Email<textarea name="message" Message placeholder="Message" required></textarea>
+                    <button type="submit" class="submit-button" >Send</button>
                 </form>
                 <div class="contact-info">
                     <div class="info-item">
-                        <h3 data-i18n="contact_address_title">contact_address_title</h3>
-                        <p data-i18n="contact_address">contact_address</p>
+                        <h3 >Address</h3>
+                        <p >397 Rue Norman, Lachine, QC</p>
                     </div>
                     <div class="info-item">
-                        <h3 data-i18n="contact_phone_title">contact_phone_title</h3>
-                        <p data-i18n="contact_phone_value">contact_phone_value</p>
+                        <h3 >Phone</h3>
+                        <p >(438) 979-2625</p>
                     </div>
                     <div class="info-item">
-                        <h3 data-i18n="contact_email_title">contact_email_title</h3>
-                        <p data-i18n="contact_email_value">contact_email_value</p>
+                        <h3 >Email</h3>
+                        <p >contact@kerni.ca</p>
                     </div>
                 </div>
             </div>
@@ -234,7 +236,7 @@
             </div>
         </div>
     </footer>
-    <script src="config.js"></script>
-    <script src="script.js" type="module"></script>
+    <script src="../config.js"></script>
+    <script src="../script.js" type="module"></script>
 </body>
 </html> 

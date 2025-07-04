@@ -1,23 +1,19 @@
 function getCurrentLang() {
-  return localStorage.getItem('lang') || 'fr';
+  if (window.location.pathname.includes('/en/')) return 'en';
+  return 'fr';
 }
-// Устанавливаем fr по умолчанию при первом заходе
-if (!localStorage.getItem('lang')) {
-  localStorage.setItem('lang', 'fr');
-}
+
 function setLang(lang) {
-  localStorage.setItem('lang', lang);
-  loadLang();
-  renderLangSwitch();
-  if (window.loadPortfolioLangDict && window.buildPortfolioTiles) {
-    window.loadPortfolioLangDict().then(window.buildPortfolioTiles);
-  }
+  window.location.href = '/build/' + lang + '/';
 }
+
 async function loadLang() {
   const lang = getCurrentLang();
-  const res = await fetch(lang + '.json');
+  const isSubfolder = window.location.pathname.includes('/fr/') || window.location.pathname.includes('/en/');
+  const jsonPath = isSubfolder ? '../' + lang + '.json' : lang + '.json';
+  const res = await fetch(jsonPath);
   const dict = await res.json();
-  // Обновление <title> и <meta name='description'>
+      // Update <title> and <meta name='description'>
   if (dict.title) {
     document.title = dict.title;
     const titleTag = document.querySelector('title[data-i18n="title"]');
@@ -36,13 +32,14 @@ async function loadLang() {
         e.innerHTML = value;
       }
     });
-    // alt-атрибуты
+    // alt attributes
     const altEls = document.querySelectorAll('[data-i18n-alt="' + key + '"]');
     altEls.forEach(e => {
       e.alt = value;
     });
   }
 }
+
 function renderLangSwitch() {
   const lang = getCurrentLang();
   const nextLang = lang === 'en' ? 'fr' : 'en';
@@ -53,6 +50,7 @@ function renderLangSwitch() {
     btn.title = lang === 'en' ? 'Passer en français' : 'Switch to English';
   }
 }
+
 window.addEventListener('DOMContentLoaded', function() {
   loadLang();
   renderLangSwitch();

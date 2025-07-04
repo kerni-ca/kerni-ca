@@ -3,6 +3,7 @@ config.js
 
 # Логи
 *.log
+.history
 
 # Временные файлы
 .DS_Store

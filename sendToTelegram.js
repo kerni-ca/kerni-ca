@@ -37,7 +37,7 @@ export async function sendToTelegram(data) {
         📞 Phone: *${data.phone}*
         🌐 Language: *${langEmoji} ${langName}*
         🌎 Location: *${geo ? `${geo.country}, ${geo.regionName}, ${geo.city}` : 'Unknown'} (${data.ip})*
-        📝 Message: *${data.message}*
+        📝 Message:\n*${data.message}*
     `.trim();
 
   const url = `https://api.telegram.org/bot${botToken}/sendMessage`;

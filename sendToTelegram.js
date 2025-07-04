@@ -23,7 +23,9 @@ export async function sendToTelegram(data) {
     throw new Error('Telegram bot not configured. Please check config.js file.');
   }
 
-  const geo = data.ip ? await getGeoInfo(data.ip) : null;
+  console.log('IP address:', data.ip);
+  const geo = data.ip && data.ip !== 'Unknown' ? await getGeoInfo(data.ip) : null;
+  console.log('Geo info:', geo);
 
   const langEmoji = data.language === 'en' ? '🇬🇧' : '🇫🇷';
   const langName = data.language === 'en' ? 'English' : 'French';

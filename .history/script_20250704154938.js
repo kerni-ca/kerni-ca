@@ -270,11 +270,7 @@ window.addEventListener('DOMContentLoaded', async function() {
   const yearEl = document.getElementById('footer-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
   const rightsEl = document.getElementById('footer-rights-text');
-  if (rightsEl) {
-    const year = new Date().getFullYear();
-    let template = window.i18nDict['footer_rights'] || '© {year} All rights reserved';
-    rightsEl.textContent = template.replace('{year}', year);
-  }
+  if (rightsEl) rightsEl.textContent = window.i18nDict['footer_rights'] || 'All rights reserved';
 });
 
 window.buildPortfolioTiles = buildPortfolioTiles;

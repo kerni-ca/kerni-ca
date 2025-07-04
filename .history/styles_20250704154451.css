@@ -441,20 +441,8 @@ body {
 }
 
 .info-item h3 {
-    color: var(--accent-color);
+    color: var(--primary-color);
     margin-bottom: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.info-item p {
-    color: var(--text-color);
-    font-size: 1.08em;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    margin-bottom: 0;
-    word-break: break-all;
 }
 
 /* Footer */
@@ -875,28 +863,4 @@ img {
 .notification-btn:hover {
   background: var(--white);
   color: var(--accent-color);
-}
-
-.lang-btn {
-  background: transparent;
-  color: var(--accent-color);
-  border: 1.5px solid var(--accent-color);
-  border-radius: 18px;
-  padding: 4px 18px;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 700;
-  margin-left: 8px;
-  cursor: pointer;
-  transition: background 0.18s, color 0.18s, border 0.18s;
-  box-shadow: none;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  outline: none;
-  line-height: 1.2;
-}
-.lang-btn:hover, .lang-btn.active {
-  background: var(--accent-color);
-  color: var(--dark-bg);
-  border-color: var(--accent-color);
 } 

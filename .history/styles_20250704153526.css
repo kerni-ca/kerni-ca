@@ -370,18 +370,13 @@ body {
 
 /* Contact Section */
 .contact {
-    padding: 120px 0;
-    background: var(--dark-bg);
+    padding: 100px 0;
 }
 
 .contact h2 {
     text-align: center;
-    font-size: 3rem;
-    margin-bottom: 60px;
-    color: var(--white);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
 }
 
 .contact-content {
@@ -398,21 +393,10 @@ body {
 
 .contact-form input,
 .contact-form textarea {
-    padding: 18px;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     font-family: inherit;
-    background: var(--card-bg);
-    color: var(--text-color);
-    font-size: 1rem;
-    transition: var(--transition);
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: none;
-    border-color: var(--accent-color);
-    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
 .contact-form textarea {
@@ -441,20 +425,8 @@ body {
 }
 
 .info-item h3 {
-    color: var(--accent-color);
+    color: var(--primary-color);
     margin-bottom: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.info-item p {
-    color: var(--text-color);
-    font-size: 1.08em;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    margin-bottom: 0;
-    word-break: break-all;
 }
 
 /* Footer */
@@ -481,18 +453,14 @@ body {
 
 /* Testimonials Section */
 .testimonials {
-    padding: 120px 0;
-    background: var(--dark-bg);
+    padding: 100px 0;
+    background: var(--white);
 }
 
 .testimonials h2 {
     text-align: center;
-    font-size: 3rem;
-    margin-bottom: 60px;
-    color: var(--white);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
 }
 
 .testimonials-grid {
@@ -502,36 +470,47 @@ body {
 }
 
 .testimonial-card {
-    background: var(--card-bg);
-    padding: 40px 30px;
-    border-radius: 20px;
-    box-shadow: var(--shadow);
+    background: var(--light-bg);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     transition: var(--transition);
-    border: 1px solid var(--border-color);
-    position: relative;
-    overflow: hidden;
 }
-.testimonial-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent-color), #b8941f);
-}
+
 .testimonial-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 45px rgba(0,0,0,0.4);
-    border-color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
+
+.testimonial-content {
+    margin-bottom: 20px;
+}
+
 .testimonial-content p {
     font-style: italic;
     line-height: 1.8;
     color: var(--text-color);
 }
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.testimonial-author img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
 .author-info h4 {
-    color: var(--accent-color);
+    color: var(--primary-color);
     margin-bottom: 5px;
 }
+
 .author-info p {
     font-size: 0.9rem;
     color: var(--text-color);
@@ -540,106 +519,54 @@ body {
 
 /* Partners Section */
 .partners {
-    padding: 120px 0;
-    background: var(--dark-bg);
+    padding: 100px 0;
+    background: var(--light-bg);
 }
+
 .partners h2 {
     text-align: center;
-    font-size: 3rem;
-    margin-bottom: 60px;
-    color: var(--white);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
 }
+
 .partners-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
 }
+
 .partner-card {
-    background: var(--card-bg);
-    padding: 35px 30px;
-    border-radius: 18px;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
     text-align: center;
-    box-shadow: var(--shadow);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     transition: var(--transition);
-    border: 1.5px solid var(--border-color);
-    position: relative;
-    overflow: hidden;
 }
-.partner-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent-color), #b8941f);
-}
+
 .partner-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 45px rgba(0,0,0,0.4);
-    border-color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
+
 .partner-card img {
-    width: 180px;
-    height: 90px;
+    width: 200px;
+    height: 100px;
     object-fit: contain;
     margin-bottom: 20px;
     border-radius: 8px;
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-}
-.partner-card h3 {
-    color: var(--accent-color);
-    margin-bottom: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-.partner-card p {
-    font-size: 1rem;
-    color: var(--text-color);
-    opacity: 0.9;
+    background-color: var(--white);
 }
 
-/* Portfolio Carousel Modal */
-.carousel-modal {
-    position: fixed;
-    z-index: 9999;
-    left: 0; top: 0; width: 100vw; height: 100vh;
-    background: rgba(15,15,15,0.96);
-    display: flex; align-items: center; justify-content: center;
+.partner-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
 }
-.carousel-content {
-    position: relative;
-    background: var(--card-bg);
-    border-radius: 16px;
-    padding: 30px 30px 20px 30px;
-    box-shadow: var(--shadow);
-    display: flex; align-items: center;
-    min-width: 350px;
-    min-height: 350px;
-}
-.carousel-content img {
-    max-width: 70vw; max-height: 70vh; border-radius: 8px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
-}
-.carousel-close {
-    position: absolute; top: 10px; right: 20px; font-size: 2rem; color: var(--accent-color); cursor: pointer; z-index: 2;
-    transition: color 0.2s;
-}
-.carousel-close:hover {
-    color: var(--white);
-}
-.carousel-arrow {
-    background: var(--accent-color); color: var(--dark-bg); border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.5rem; cursor: pointer; margin: 0 15px; opacity: 0.9; transition: opacity 0.2s, background 0.2s;
-    box-shadow: 0 2px 8px rgba(212,175,55,0.15);
-}
-.carousel-arrow:hover { opacity: 1; background: var(--white); color: var(--accent-color); }
-#carousel-desc {
-    text-align: center;
-    margin: 10px 0 0 0;
-    font-size: 1.1em;
-    color: var(--accent-color);
+
+.partner-card p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.8;
 }
 
 /* Responsive Design */
@@ -742,7 +669,7 @@ img {
   text-align: center;
   margin: 10px 0 0 0;
   font-size: 1.1em;
-  color: var(--accent-color);
+  color: #333;
 }
 
 #loading-overlay {
@@ -780,123 +707,4 @@ img {
   font-weight: 700;
   letter-spacing: 2px;
   text-shadow: 0 2px 8px rgba(0,0,0,0.12);
-}
-
-.portfolio-tiles {
-  display: flex;
-  gap: 32px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 30px;
-}
-
-.carousel-img-desc-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#carousel-desc {
-  text-align: center;
-  margin: 10px 0 0 0;
-  font-size: 1.1em;
-  color: var(--accent-color);
-  font-weight: 600;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.notification-modal {
-  position: fixed;
-  z-index: 10000;
-  left: 0; top: 0; width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.6);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.notification-modal.show {
-  opacity: 1;
-}
-.notification-content {
-  background: var(--card-bg);
-  border-radius: 15px;
-  padding: 40px;
-  text-align: center;
-  box-shadow: var(--shadow);
-  max-width: 400px;
-  width: 90%;
-  transform: scale(0.8);
-  transition: transform 0.3s ease;
-}
-.notification-modal.show .notification-content {
-  transform: scale(1);
-}
-.notification-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin: 0 auto 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  font-weight: bold;
-}
-.notification-icon.success {
-  background: #4CAF50;
-  color: white;
-}
-.notification-icon.error {
-  background: #f44336;
-  color: white;
-}
-.notification-content h3 {
-  margin: 0 0 15px 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--accent-color);
-}
-.notification-content p {
-  margin: 0 0 25px 0;
-  color: var(--text-color);
-  line-height: 1.5;
-}
-.notification-btn {
-  background: var(--accent-color);
-  color: var(--dark-bg);
-  border: none;
-  border-radius: 8px;
-  padding: 12px 30px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-.notification-btn:hover {
-  background: var(--white);
-  color: var(--accent-color);
-}
-
-.lang-btn {
-  background: transparent;
-  color: var(--accent-color);
-  border: 1.5px solid var(--accent-color);
-  border-radius: 18px;
-  padding: 4px 18px;
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 700;
-  margin-left: 8px;
-  cursor: pointer;
-  transition: background 0.18s, color 0.18s, border 0.18s;
-  box-shadow: none;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  outline: none;
-  line-height: 1.2;
-}
-.lang-btn:hover, .lang-btn.active {
-  background: var(--accent-color);
-  color: var(--dark-bg);
-  border-color: var(--accent-color);
 } 

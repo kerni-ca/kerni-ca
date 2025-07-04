@@ -441,20 +441,8 @@ body {
 }
 
 .info-item h3 {
-    color: var(--accent-color);
+    color: var(--primary-color);
     margin-bottom: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.info-item p {
-    color: var(--text-color);
-    font-size: 1.08em;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    margin-bottom: 0;
-    word-break: break-all;
 }
 
 /* Footer */

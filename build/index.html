@@ -27,10 +27,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
 
-    <link rel="canonical" href="/">
-    <link rel="alternate" hreflang="en" href="/en/">
-    <link rel="alternate" hreflang="fr" href="/">
-    <link rel="alternate" hreflang="x-default" href="/en/">
+    <link rel="canonical" href="/kerni/">
+    <link rel="alternate" hreflang="en" href="/kerni/en/">
+    <link rel="alternate" hreflang="fr" href="/kerni/">
+    <link rel="alternate" hreflang="x-default" href="/kerni/en/">
 </head>
 <body>
 
@@ -44,7 +44,7 @@
                 <li><a href="#testimonials" >Témoignages</a></li>
                 <li><a href="#partners" >Partenaires</a></li>
                 <li><a href="#contact" >Contact</a></li>
-                <li><button id="lang-switch" class="lang-btn" onclick="window.location.href='/en/'" title="Switch to English">EN</button></li>
+                <li><button id="lang-switch" class="lang-btn" onclick="window.location.href='/kerni/en/'" title="Switch to English">EN</button></li>
             </ul>
         </nav>
         <div class="hero">
@@ -102,7 +102,19 @@
     <section id="portfolio" class="portfolio">
         <div class="container">
             <h2 >Nos réalisations</h2>
-            <div class="portfolio-tiles"></div>
+            <div class="portfolio-tiles">
+        <div class="portfolio-tile" onclick="openCarousel(0, 0)">
+            <img src="images/portfolio/1/0.jpg" alt="Aperçu du projet garage époxy" class="portfolio-tile-img">
+            <div class="portfolio-tile-caption">Garage époxy</div>
+        </div>
+        <div class="portfolio-tile" onclick="openCarousel(1, 0)">
+            <img src="images/portfolio/2/0.jpg" alt="Aperçu du projet magasin époxy" class="portfolio-tile-img">
+            <div class="portfolio-tile-caption">Magasin époxy</div>
+        </div>
+        <div class="portfolio-tile" onclick="openCarousel(2, 0)">
+            <img src="images/portfolio/3/0.jpg" alt="Aperçu du projet salon époxy" class="portfolio-tile-img">
+            <div class="portfolio-tile-caption">Salon</div>
+        </div></div>
         </div>
     </section>
 
@@ -237,6 +249,7 @@
         </div>
     </footer>
     <script src="config.js"></script>
+    <script src="portfolio.js"></script>
     <script src="script.js" type="module"></script>
 </body>
 </html> 

@@ -1,19 +1,22 @@
 const fs = require('fs');
 const path = require('path');
 
+// Default language configuration
+const DEFAULT_LANG = 'fr';
+
 // Language configuration
 const languages = {
   fr: {
     lang: 'fr',
-    canonical: '/',
-    alternateEn: '/en/',
-    alternateFr: '/'
+    canonical: '/kerni/',
+    alternateEn: '/kerni/en/',
+    alternateFr: '/kerni/'
   },
   en: {
     lang: 'en',
-    canonical: '/en/',
-    alternateEn: '/en/',
-    alternateFr: '/'
+    canonical: '/kerni/en/',
+    alternateEn: '/kerni/en/',
+    alternateFr: '/kerni/'
   }
 };
 
@@ -25,6 +28,35 @@ function loadTranslations(lang) {
 
 function readTemplate() {
   return fs.readFileSync('index.html', 'utf8');
+}
+
+// Portfolio data structure
+const portfolioData = [
+  { client: 1, images: [ '1/1.jpg', '1/2.jpg', '1/3.jpg', '1/4.jpg' ], titleKey: 'portfolio_garage' },
+  { client: 2, images: [ '2/1.jpg', '2/2.jpg', '2/3.jpg', '2/4.jpg' ], titleKey: 'portfolio_shop' },
+  { client: 3, images: [ '3/1.jpg', '3/2.jpg', '3/3.jpg', '3/4.jpg' ], titleKey: 'portfolio_livingroom' },
+];
+
+function generatePortfolioTiles(html, translations, lang) {
+  const portfolioTilesRegex = /<div class="portfolio-tiles"><\/div>/;
+  let portfolioHTML = '';
+  
+  portfolioData.forEach((client, clientIdx) => {
+    const tileDesc = translations[client.titleKey] || client.titleKey;
+    const altKey = client.titleKey + '_alt';
+    const altText = translations[altKey] || translations[client.titleKey] || '';
+    
+    // Fix image path for non-default language (English is in subfolder)
+    const imagePath = lang === DEFAULT_LANG ? 'images/portfolio/' : '../images/portfolio/';
+    
+    portfolioHTML += `
+        <div class="portfolio-tile" onclick="openCarousel(${clientIdx}, 0)">
+            <img src="${imagePath}${client.client}/0.jpg" alt="${altText}" class="portfolio-tile-img">
+            <div class="portfolio-tile-caption">${tileDesc}</div>
+        </div>`;
+  });
+  
+  return html.replace(portfolioTilesRegex, `<div class="portfolio-tiles">${portfolioHTML}</div>`);
 }
 
 function generateHTML(lang, config) {
@@ -59,7 +91,9 @@ function generateHTML(lang, config) {
     html = html.replace(/href="styles\.css"/g, 'href="../styles.css"');
     html = html.replace(/src="config\.js"/g, 'src="../config.js"');
     html = html.replace(/src="script\.js"/g, 'src="../script.js"');
+    html = html.replace(/src="portfolio\.js"/g, 'src="../portfolio.js"');
     html = html.replace(/src="sendToTelegram\.js"/g, 'src="../sendToTelegram.js"');
+    html = html.replace(/src="getGeoInfo\.js"/g, 'src="../getGeoInfo.js"');
     html = html.replace(/src="images\//g, 'src="../images/');
   }
   
@@ -81,6 +115,9 @@ function generateHTML(lang, config) {
     html = html.replace(new RegExp(`>${key}<`, 'g'), `>${value}<`);
   }
   
+  // Generate portfolio tiles statically
+  html = generatePortfolioTiles(html, translations, lang);
+  
   // Remove all data-i18n attributes
   html = html.replace(/data-i18n="[^"]*"/g, '');
   html = html.replace(/data-i18n-alt="[^"]*"/g, '');
@@ -92,7 +129,7 @@ function generateHTML(lang, config) {
   
   // Add language switch button with correct redirect
   const nextLang = lang === 'en' ? 'fr' : 'en';
-  const nextLangPath = lang === 'en' ? '/' : '/en/';
+  const nextLangPath = lang === 'en' ? '/kerni/' : '/kerni/en/';
   const langButton = `<button id="lang-switch" class="lang-btn" onclick="window.location.href='${nextLangPath}'" title="${lang === 'en' ? 'Passer en français' : 'Switch to English'}">${nextLang.toUpperCase()}</button>`;
   html = html.replace(/<button id="lang-switch"[^>]*><\/button>/, langButton);
   
@@ -124,7 +161,12 @@ function buildPages() {
   }
 
   // Copy resources
-  ['styles.css', 'script.js', 'config.js', 'sendToTelegram.js'].forEach(file => {
+  ['styles.css', 'script.js', 'portfolio.js', 'config.js', 'sendToTelegram.js', 'getGeoInfo.js'].forEach(file => {
+    if (fs.existsSync(file)) fs.copyFileSync(file, path.join(buildDir, file));
+  });
+  
+  // Copy translation files
+  ['en.json', 'fr.json'].forEach(file => {
     if (fs.existsSync(file)) fs.copyFileSync(file, path.join(buildDir, file));
   });
   if (fs.existsSync('images')) copyRecursiveSync('images', path.join(buildDir, 'images'));

@@ -8,6 +8,7 @@ import { getGeoInfo } from './getGeoInfo.js';
  * @param {string} data.email - The email address of the person.
  * @param {string} data.phone - The phone number of the person.
  * @param {string} data.message - The message content.
+ * @param {string} data.language - The language version of the site (fr/en).
  * @param {string} data.ip - The IP address of the person.
  * @returns {Promise<Object>} The response from the Telegram API.
  */
@@ -24,12 +25,16 @@ export async function sendToTelegram(data) {
 
   const geo = data.ip ? await getGeoInfo(data.ip) : null;
 
+  const langEmoji = data.language === 'en' ? '🇬🇧' : '🇫🇷';
+  const langName = data.language === 'en' ? 'English' : 'French';
+  
   const text = `
         📨 *New KERNI Customer Contact Form Submission*
         👤 Name: *${data.name}*
         📧 Email: *${data.email}*
         📞 Phone: *${data.phone}*
         📝 Message: *${data.message}*
+        🌐 Language: *${langEmoji} ${langName}*
         🖥️ IP: *${data.ip}*
         ${geo ? `🌎 Location: *${geo.country}, ${geo.regionName}, ${geo.city}*` : ''}
     `.trim();

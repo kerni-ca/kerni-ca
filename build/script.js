@@ -1,5 +1,147 @@
 import { sendToTelegram } from './sendToTelegram.js';
 
+// Main site functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize contact form
+  initContactForm();
+  
+  // Initialize smooth scrolling
+  initSmoothScrolling();
+  
+  // Initialize footer year
+  initFooterYear();
+  
+  // Initialize mobile menu
+  initMobileMenu();
+});
+
+function getCurrentLang() {
+  if (window.location.pathname.includes('/en/')) return 'en';
+  return 'fr';
+}
+
+function initContactForm() {
+  const form = document.querySelector('.contact-form');
+  if (!form) return;
+  
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const currentLang = getCurrentLang();
+    const data = {
+      name: formData.get('name'),
+      phone: formData.get('phone'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+      language: currentLang
+    };
+    
+    try {
+      await sendToTelegram(data);
+      showNotification('success');
+      form.reset();
+    } catch (error) {
+      console.error('Error sending message:', error);
+      showNotification('error');
+    }
+  });
+}
+
+function showNotification(type) {
+  const modal = document.getElementById('notification-modal');
+  const title = document.getElementById('notification-title');
+  const message = document.getElementById('notification-message');
+  const icon = document.getElementById('notification-icon');
+  
+  if (!modal || !title || !message || !icon) return;
+  
+  if (type === 'success') {
+    title.textContent = 'Success!';
+    message.textContent = 'Your message has been sent successfully.';
+    icon.textContent = '✓';
+    icon.style.color = '#4CAF50';
+  } else {
+    title.textContent = 'Error!';
+    message.textContent = 'An error occurred while sending the message. Please try again.';
+    icon.textContent = '✗';
+    icon.style.color = '#f44336';
+  }
+  
+  modal.style.display = 'flex';
+  
+  // Auto-hide after 5 seconds
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 5000);
+}
+
+function initSmoothScrolling() {
+  const links = document.querySelectorAll('a[href^="#"]');
+  links.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const targetElement = document.querySelector(targetId);
+      
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+}
+
+function initFooterYear() {
+  const footerText = document.getElementById('footer-rights-text');
+  if (footerText) {
+    const currentYear = new Date().getFullYear();
+    footerText.textContent = `© ${currentYear} All rights reserved`;
+  }
+}
+
+function initMobileMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  const hamburger = document.querySelector('.hamburger');
+  
+  if (!navLinks || !hamburger) return;
+  
+  hamburger.addEventListener('click', function() {
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active');
+  });
+  
+  // Close menu when clicking on a link
+  const links = navLinks.querySelectorAll('a');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      hamburger.classList.remove('active');
+    });
+  });
+}
+
+// Close notification modal
+document.addEventListener('DOMContentLoaded', function() {
+  const closeBtn = document.getElementById('notification-close');
+  const modal = document.getElementById('notification-modal');
+  
+  if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    
+    // Close on background click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  }
+});
+
 // --- Dynamic portfolio generation ---
 // Example data structure (can be extended)
 const portfolioData = [
@@ -10,11 +152,6 @@ const portfolioData = [
 
 // Global translation dictionary
 window.i18nDict = {};
-
-function getCurrentLang() {
-  if (window.location.pathname.includes('/en/')) return 'en';
-  return 'fr';
-}
 
 async function loadPortfolioLangDict() {
   const lang = getCurrentLang();

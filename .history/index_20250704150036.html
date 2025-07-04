@@ -11,6 +11,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="lang.js"></script>
+    <script src="config.js"></script>
+    <script>
+      // Ранняя диагностика загрузки конфигурации
+      console.log('=== EARLY CONFIG CHECK ===');
+      console.log('Config loaded:', window.TELEGRAM_CONFIG);
+      if (window.TELEGRAM_CONFIG) {
+        console.log('Bot token exists:', !!window.TELEGRAM_CONFIG.botToken);
+        console.log('Chat ID exists:', !!window.TELEGRAM_CONFIG.chatId);
+      }
+    </script>
 </head>
 <body>
     <div id="loading-overlay">
@@ -267,8 +277,6 @@
       if (window.TELEGRAM_CONFIG) {
         console.log('Bot token exists:', !!window.TELEGRAM_CONFIG.botToken);
         console.log('Chat ID exists:', !!window.TELEGRAM_CONFIG.chatId);
-      } else {
-        console.error('TELEGRAM_CONFIG is undefined!');
       }
     </script>
     <script src="script.js" type="module"></script>

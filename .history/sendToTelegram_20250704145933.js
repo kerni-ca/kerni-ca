@@ -13,40 +13,25 @@ import { getGeoInfo } from './getGeoInfo.js';
  */
 
 export async function sendToTelegram(data) {
-  console.log('=== SEND TO TELEGRAM START ===');
-  
   // Ждем загрузки конфигурации
   let attempts = 0;
-  while (!window.TELEGRAM_CONFIG && attempts < 20) {
-    console.log(`Waiting for config... attempt ${attempts + 1}`);
-    await new Promise(resolve => setTimeout(resolve, 200));
+  while (!window.TELEGRAM_CONFIG && attempts < 10) {
+    await new Promise(resolve => setTimeout(resolve, 100));
     attempts++;
   }
 
   const config = window.TELEGRAM_CONFIG;
-  console.log('Telegram config after wait:', config);
+  console.log('Telegram config:', config); // Для диагностики
 
-  // Fallback конфигурация для тестирования
-  if (!config) {
-    console.error('No config found, using fallback...');
-    window.TELEGRAM_CONFIG = {
-      botToken: 'YOUR_BOT_TOKEN_HERE',
-      chatId: 'YOUR_CHAT_ID_HERE'
-    };
-  }
-
-  const botToken = config?.botToken || window.TELEGRAM_CONFIG?.botToken;
-  const chatId = config?.chatId || window.TELEGRAM_CONFIG?.chatId;
-
-  console.log('Final botToken:', botToken);
-  console.log('Final chatId:', chatId);
+  const botToken = config?.botToken;
+  const chatId = config?.chatId;
 
   if (!botToken || !chatId || botToken === 'YOUR_BOT_TOKEN_HERE' || botToken === '${{ secrets.TELEGRAM_BOT_TOKEN }}') {
     console.error('Telegram config missing or not configured properly.');
     console.error('Config object:', config);
     console.error('Bot token:', botToken);
     console.error('Chat ID:', chatId);
-    throw new Error('Telegram bot not configured. Please check config.js file.');
+    throw new Error('Telegram bot not configured');
   }
 
   const geo = data.ip ? await getGeoInfo(data.ip) : null;
@@ -62,9 +47,6 @@ export async function sendToTelegram(data) {
     `.trim();
 
   const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-  console.log('Sending to URL:', url);
-  console.log('Message text:', text);
 
   const res = await fetch(url, {
     method: 'POST',
@@ -82,7 +64,5 @@ export async function sendToTelegram(data) {
     throw new Error('Failed to send message to Telegram');
   }
 
-  const result = await res.json();
-  console.log('Telegram API response:', result);
-  return result;
+  return await res.json();
 } 

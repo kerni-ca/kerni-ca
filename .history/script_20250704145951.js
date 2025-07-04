@@ -151,23 +151,10 @@ async function getUserIP() {
 async function handleFormSubmit(event) {
   event.preventDefault();
   
-  console.log('=== FORM SUBMIT DIAGNOSTICS ===');
-  console.log('1. Form submitted');
-  
   const form = event.target;
   const formData = new FormData(form);
   
-  console.log('2. Form data collected');
-  console.log('Form data:', {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    phone: formData.get('phone'),
-    message: formData.get('message')
-  });
-  
-  console.log('3. Getting user IP...');
   const userIP = await getUserIP();
-  console.log('User IP:', userIP);
   
   const data = {
     name: formData.get('name') || '',
@@ -177,27 +164,12 @@ async function handleFormSubmit(event) {
     ip: userIP
   };
   
-  console.log('4. Data prepared:', data);
-  
-  console.log('5. Checking Telegram config...');
-  console.log('window.TELEGRAM_CONFIG:', window.TELEGRAM_CONFIG);
-  console.log('Config type:', typeof window.TELEGRAM_CONFIG);
-  
-  if (window.TELEGRAM_CONFIG) {
-    console.log('Config botToken:', window.TELEGRAM_CONFIG.botToken);
-    console.log('Config chatId:', window.TELEGRAM_CONFIG.chatId);
-  }
-  
   try {
-    console.log('6. Calling sendToTelegram...');
     await sendToTelegram(data);
-    console.log('7. Message sent successfully!');
     alert('Thank you! Your message has been sent successfully.');
     form.reset();
   } catch (error) {
-    console.error('8. Error occurred:', error);
-    console.error('Error message:', error.message);
-    console.error('Error stack:', error.stack);
+    console.error('Error sending form:', error);
     alert('Sorry, there was an error sending your message. Please try again.');
   }
 }

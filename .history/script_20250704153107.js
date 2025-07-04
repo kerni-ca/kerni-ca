@@ -136,24 +136,24 @@ function hideLoadingOverlay() {
 }
 
 // Функции для работы с модальным окном уведомлений
-function showNotification(type) {
+function showNotification(type, title, message) {
   const modal = document.getElementById('notification-modal');
   const icon = document.getElementById('notification-icon');
   const iconContainer = icon.parentElement;
   const titleEl = document.getElementById('notification-title');
   const messageEl = document.getElementById('notification-message');
   
+  // Устанавливаем содержимое
+  titleEl.textContent = title;
+  messageEl.textContent = message;
+  
   // Устанавливаем иконку и стиль
   if (type === 'success') {
     icon.textContent = '✓';
     iconContainer.className = 'notification-icon success';
-    titleEl.setAttribute('data-i18n', 'notification_success_title');
-    messageEl.setAttribute('data-i18n', 'notification_success_message');
   } else {
     icon.textContent = '✕';
     iconContainer.className = 'notification-icon error';
-    titleEl.setAttribute('data-i18n', 'notification_error_title');
-    messageEl.setAttribute('data-i18n', 'notification_error_message');
   }
   
   // Показываем модальное окно
@@ -163,16 +163,7 @@ function showNotification(type) {
   }, 10);
   
   // Обновляем переводы в модальном окне
-  if (window.i18nDict) {
-    const titleKey = titleEl.getAttribute('data-i18n');
-    const messageKey = messageEl.getAttribute('data-i18n');
-    if (titleKey && window.i18nDict[titleKey]) {
-      titleEl.textContent = window.i18nDict[titleKey];
-    }
-    if (messageKey && window.i18nDict[messageKey]) {
-      messageEl.textContent = window.i18nDict[messageKey];
-    }
-  }
+  updateTranslations();
 }
 
 function hideNotification() {

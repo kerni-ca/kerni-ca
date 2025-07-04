@@ -94,6 +94,5 @@
   "notification_success_title": "Succès !",
   "notification_success_message": "Votre message a été envoyé avec succès.",
   "notification_error_title": "Erreur !",
-  "notification_error_message": "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.",
-  "notification_ok": "OK"
+  "notification_error_message": "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer."
 } 

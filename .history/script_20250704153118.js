@@ -163,16 +163,7 @@ function showNotification(type) {
   }, 10);
   
   // Обновляем переводы в модальном окне
-  if (window.i18nDict) {
-    const titleKey = titleEl.getAttribute('data-i18n');
-    const messageKey = messageEl.getAttribute('data-i18n');
-    if (titleKey && window.i18nDict[titleKey]) {
-      titleEl.textContent = window.i18nDict[titleKey];
-    }
-    if (messageKey && window.i18nDict[messageKey]) {
-      messageEl.textContent = window.i18nDict[messageKey];
-    }
-  }
+  updateTranslations();
 }
 
 function hideNotification() {

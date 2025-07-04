@@ -53,6 +53,8 @@ npm run serve
 npm run preview
 ```
 
+**Note:** The project includes `package-lock.json` for consistent dependency installation.
+
 ## Build Output
 
 The build process creates:

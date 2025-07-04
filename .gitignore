@@ -1,10 +1,16 @@
-# Конфигурационные файлы с секретными данными
+# Dependencies
+node_modules/
+
+# Configuration files with secrets
 config.js
 
-# Логи
+# Logs
 *.log
 .history
 
-# Временные файлы
+# Temporary files
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Build output (optional - can be committed for deployment)
+# build/ 

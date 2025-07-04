@@ -1,1 +1,242 @@
-<!DOCTYPE html><html lang="fr"><head><meta http-equiv="refresh" content="0; url=/build/fr/"><script>window.location.replace('/build/fr/');</script></head><body></body></html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KERNI - Sols époxy de qualité à Montréal</title>
+    <meta name="description" content="Installation et réparation professionnelle de sols époxy à Montréal. Matériaux de haute qualité, artisans expérimentés, garantie sur les travaux.">
+    <meta name="keywords" content="sols époxy Montréal, installation sols époxy, revêtements époxy commerciaux, revêtements époxy industriels, sols garage époxy, entrepreneur sols époxy Montréal">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://malyarevich.github.io/kerni/">
+    <meta property="og:title" content="KERNI - Sols époxy de qualité à Montréal">
+    <meta property="og:description" content="Installation et réparation professionnelle de sols époxy à Montréal. Matériaux de haute qualité, artisans expérimentés.">
+    <meta property="og:image" content="https://malyarevich.github.io/kerni/images/header-bg.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://malyarevich.github.io/kerni/">
+    <meta property="twitter:title" content="KERNI - Sols époxy de qualité à Montréal">
+    <meta property="twitter:description" content="Installation et réparation professionnelle de sols époxy à Montréal. Matériaux de haute qualité, artisans expérimentés.">
+    <meta property="twitter:image" content="https://malyarevich.github.io/kerni/images/header-bg.jpg">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+
+    <link rel="canonical" href="/">
+    <link rel="alternate" hreflang="en" href="/en/">
+    <link rel="alternate" hreflang="fr" href="/">
+    <link rel="alternate" hreflang="x-default" href="/en/">
+</head>
+<body>
+
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">KERNI</div>
+            <ul class="nav-links">
+                <li><a href="#about" >À propos</a></li>
+                <li><a href="#services" >Nos services</a></li>
+                <li><a href="#portfolio" >Réalisations</a></li>
+                <li><a href="#testimonials" >Témoignages</a></li>
+                <li><a href="#partners" >Partenaires</a></li>
+                <li><a href="#contact" >Contact</a></li>
+                <li><button id="lang-switch" class="lang-btn" onclick="window.location.href='/en/'" title="Switch to English">EN</button></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1 >Sols époxy modernes</h1>
+            <p >Des solutions professionnelles pour votre espace</p>
+            <a href="#contact" class="cta-button" >Obtenir une consultation</a>
+        </div>
+    </header>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 >À propos</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p >Nous sommes une équipe de professionnels avec de nombreuses années d'expérience dans la création de revêtements époxy. Notre mission est de transformer les espaces, en les rendant non seulement beaux mais aussi fonctionnels.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat">
+                        <span class="number">10+</span>
+                        <span class="label" >années d'expérience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">500+</span>
+                        <span class="label" >projets</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">100%</span>
+                        <span class="label" >garantie</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 >Nos services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3 >Sols industriels</h3>
+                    <p >Revêtements durables et résistants à l'usure pour les locaux industriels</p>
+                </div>
+                <div class="service-card">
+                    <h3 >Sols décoratifs</h3>
+                    <p >Solutions de design uniques pour les espaces commerciaux</p>
+                </div>
+                <div class="service-card">
+                    <h3 >Revêtements antidérapants</h3>
+                    <p >Solutions sûres pour les espaces publics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 >Nos réalisations</h2>
+            <div class="portfolio-tiles"></div>
+        </div>
+    </section>
+
+    <div id="carousel-modal" class="carousel-modal" style="display:none;">
+        <div class="carousel-content">
+            <span class="carousel-close" id="carousel-close">&times;</span>
+            <button class="carousel-arrow left" id="carousel-prev">&#8592;</button>
+            <div class="carousel-img-desc-wrapper">
+                <img id="carousel-img" src="" alt="Portfolio" />
+                <p id="carousel-desc"></p>
+            </div>
+            <button class="carousel-arrow right" id="carousel-next">&#8594;</button>
+        </div>
+    </div>
+
+    <!-- Notification modal -->
+    <div id="notification-modal" class="notification-modal" style="display:none;">
+        <div class="notification-content">
+            <div class="notification-icon">
+                <span id="notification-icon">✓</span>
+            </div>
+            <h3 id="notification-title" >Succès !</h3>
+            <p id="notification-message" >Votre message a été envoyé avec succès.</p>
+            <button id="notification-close" class="notification-btn" >OK</button>
+        </div>
+    </div>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 >Avis de nos clients</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p >Excellent travail ! Les sols sont parfaitement plats et très beaux. Merci pour votre professionnalisme et votre attention aux détails.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/testimonials/1.jpg" alt="" alt="Portrait de Jean Tremblay, résident de Montréal">
+                        <div class="author-info">
+                            <h4 >Jean Tremblay</h4>
+                            <p >Résident de Montréal</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p >Ils ont fait un super sol dans mon garage et la salle est magnifique, les enfants sont ravis !</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/testimonials/2.jpg" alt="" alt="Portrait de Marie Lefebvre, propriétaire à Québec">
+                        <div class="author-info">
+                            <h4 >Marie Lefebvre</h4>
+                            <p >Propriétaire, Québec</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p >Nous avons travaillé avec l'entreprise plusieurs fois. Toujours au top ! J'ai particulièrement apprécié la qualité des matériaux et la rapidité du travail.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="images/testimonials/3.jpg" alt="" alt="Portrait de Lucie Gagnon, entrepreneure à Montréal">
+                        <div class="author-info">
+                            <h4 >Lucie Gagnon</h4>
+                            <p >Entrepreneure, Montréal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners" class="partners">
+        <div class="container">
+            <h2 >Nos partenaires</h2>
+            <div class="partners-grid">
+                <div class="partner-card">
+                    <img src="images/partners/1.jpg" alt="" alt="Logo de BASF, leader mondial des matériaux chimiques">
+                    <h3>BASF</h3>
+                    <p >Leader mondial dans la production de matériaux chimiques</p>
+                </div>
+                <div class="partner-card">
+                    <img src="images/partners/2.jpg" alt="" alt="Logo de Sika, solutions professionnelles pour la construction">
+                    <h3>Sika</h3>
+                    <p >Solutions professionnelles pour la construction</p>
+                </div>
+                <div class="partner-card">
+                    <img src="images/partners/3.jpg" alt="" alt="Logo de Mapei, matériaux de construction innovants">
+                    <h3>Mapei</h3>
+                    <p >Matériaux de construction innovants</p>
+                </div>
+                <div class="partner-card">
+                    <img src="images/partners/4.jpg" alt="" alt="Logo de Ardex, mélanges de construction de haute qualité">
+                    <h3>Ardex</h3>
+                    <p >Mélanges de construction de haute qualité</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 >Contactez-nous</h2>
+            <div class="contact-content">
+                <form class="contact-form">
+                    <input type="text" name="name"  placeholder="Votre nom" required>Votre nom<input type="tel" name="phone"  placeholder="Téléphone" required>Téléphone<input type="email" name="email"  placeholder="Courriel" required>Courriel<textarea name="message" Message placeholder="Message" required></textarea>
+                    <button type="submit" class="submit-button" >Envoyer</button>
+                </form>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <h3 >Adresse</h3>
+                        <p >397 Rue Norman, Lachine, QC</p>
+                    </div>
+                    <div class="info-item">
+                        <h3 >Téléphone</h3>
+                        <p >(438) 979-2625</p>
+                    </div>
+                    <div class="info-item">
+                        <h3 >Courriel</h3>
+                        <p >contact@kerni.ca</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">KERNI</div>
+                <p id="footer-rights-text"></p>
+            </div>
+        </div>
+    </footer>
+    <script src="config.js"></script>
+    <script src="script.js" type="module"></script>
+</body>
+</html> 

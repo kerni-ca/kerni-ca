@@ -5,15 +5,15 @@ const path = require('path');
 const languages = {
   fr: {
     lang: 'fr',
-    canonical: '/build/fr/',
-    alternateEn: '/build/en/',
-    alternateFr: '/build/fr/'
+    canonical: '/',
+    alternateEn: '/en/',
+    alternateFr: '/'
   },
   en: {
     lang: 'en',
-    canonical: '/build/en/',
-    alternateEn: '/build/en/',
-    alternateFr: '/build/fr/'
+    canonical: '/en/',
+    alternateEn: '/en/',
+    alternateFr: '/'
   }
 };
 
@@ -54,12 +54,14 @@ function generateHTML(lang, config) {
   // Remove lang.js
   html = html.replace(/<script src="[^"]*lang\.js[^"]*"><\/script>/, '');
   
-  // Fix file paths for subdirectories
-  html = html.replace(/href="styles\.css"/g, 'href="../styles.css"');
-  html = html.replace(/src="config\.js"/g, 'src="../config.js"');
-  html = html.replace(/src="script\.js"/g, 'src="../script.js"');
-  html = html.replace(/src="sendToTelegram\.js"/g, 'src="../sendToTelegram.js"');
-  html = html.replace(/src="images\//g, 'src="../images/');
+  // Fix file paths for subdirectories (only for English version)
+  if (lang === 'en') {
+    html = html.replace(/href="styles\.css"/g, 'href="../styles.css"');
+    html = html.replace(/src="config\.js"/g, 'src="../config.js"');
+    html = html.replace(/src="script\.js"/g, 'src="../script.js"');
+    html = html.replace(/src="sendToTelegram\.js"/g, 'src="../sendToTelegram.js"');
+    html = html.replace(/src="images\//g, 'src="../images/');
+  }
   
   // Apply all translations
   for (const [key, value] of Object.entries(translations)) {
@@ -90,7 +92,8 @@ function generateHTML(lang, config) {
   
   // Add language switch button with correct redirect
   const nextLang = lang === 'en' ? 'fr' : 'en';
-  const langButton = `<button id="lang-switch" class="lang-btn" onclick="window.location.href='/build/${nextLang}/'" title="${lang === 'en' ? 'Passer en français' : 'Switch to English'}">${nextLang.toUpperCase()}</button>`;
+  const nextLangPath = lang === 'en' ? '/' : '/en/';
+  const langButton = `<button id="lang-switch" class="lang-btn" onclick="window.location.href='${nextLangPath}'" title="${lang === 'en' ? 'Passer en français' : 'Switch to English'}">${nextLang.toUpperCase()}</button>`;
   html = html.replace(/<button id="lang-switch"[^>]*><\/button>/, langButton);
   
   return html;
@@ -126,24 +129,22 @@ function buildPages() {
   });
   if (fs.existsSync('images')) copyRecursiveSync('images', path.join(buildDir, 'images'));
 
-  // Generate pages for each language
-  Object.entries(languages).forEach(([lang, config]) => {
-    const langDir = path.join(buildDir, lang);
-    if (!fs.existsSync(langDir)) fs.mkdirSync(langDir);
-    const html = generateHTML(lang, config);
-    fs.writeFileSync(path.join(langDir, 'index.html'), html);
-    console.log(`✅ Created page: ${langDir}/index.html`);
-  });
+  // Generate French version (main page)
+  const frHtml = generateHTML('fr', languages.fr);
+  fs.writeFileSync(path.join(buildDir, 'index.html'), frHtml);
+  console.log(`✅ Created French page: ${buildDir}/index.html`);
 
-  // index.html redirect
-  const redirectHtml = `<!DOCTYPE html><html lang="fr"><head><meta http-equiv="refresh" content="0; url=/build/fr/"><script>window.location.replace('/build/fr/');</script></head><body></body></html>`;
-  fs.writeFileSync(path.join(buildDir, 'index.html'), redirectHtml);
+  // Generate English version (subdirectory)
+  const enDir = path.join(buildDir, 'en');
+  if (!fs.existsSync(enDir)) fs.mkdirSync(enDir);
+  const enHtml = generateHTML('en', languages.en);
+  fs.writeFileSync(path.join(enDir, 'index.html'), enHtml);
+  console.log(`✅ Created English page: ${enDir}/index.html`);
 
   console.log('🎉 Build completed!');
   console.log('📁 File structure:');
-  console.log('   build/fr/index.html - French version (static)');
-  console.log('   build/en/index.html - English version (static)');
-  console.log('   build/index.html - Redirect to fr');
+  console.log('   build/index.html - French version (main)');
+  console.log('   build/en/index.html - English version');
 }
 
 buildPages(); 

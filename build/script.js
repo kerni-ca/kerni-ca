@@ -29,12 +29,24 @@ function initContactForm() {
     
     const formData = new FormData(form);
     const currentLang = getCurrentLang();
+    
+    // Get IP address
+    let ip = 'Unknown';
+    try {
+      const ipResponse = await fetch('https://api.ipify.org?format=json');
+      const ipData = await ipResponse.json();
+      ip = ipData.ip;
+    } catch (error) {
+      console.error('Error getting IP:', error);
+    }
+    
     const data = {
       name: formData.get('name'),
       phone: formData.get('phone'),
       email: formData.get('email'),
       message: formData.get('message'),
-      language: currentLang
+      language: currentLang,
+      ip: ip
     };
     
     try {

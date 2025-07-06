@@ -8,15 +8,15 @@ const DEFAULT_LANG = 'fr';
 const languages = {
   fr: {
     lang: 'fr',
-    canonical: '/kerni/',
-    alternateEn: '/kerni/en/',
-    alternateFr: '/kerni/'
+    canonical: '/',
+    alternateEn: '/en/',
+    alternateFr: '/'
   },
   en: {
     lang: 'en',
-    canonical: '/kerni/en/',
-    alternateEn: '/kerni/en/',
-    alternateFr: '/kerni/'
+    canonical: '/en/',
+    alternateEn: '/en/',
+    alternateFr: '/'
   }
 };
 
@@ -129,7 +129,7 @@ function generateHTML(lang, config) {
   
   // Add language switch button with correct redirect
   const nextLang = lang === 'en' ? 'fr' : 'en';
-  const nextLangPath = lang === 'en' ? '/kerni/' : '/kerni/en/';
+  const nextLangPath = lang === 'en' ? '/' : '/en/';
   const langButton = `<button id="lang-switch" class="lang-btn" onclick="window.location.href='${nextLangPath}'" title="${lang === 'en' ? 'Passer en français' : 'Switch to English'}">${nextLang.toUpperCase()}</button>`;
   html = html.replace(/<button id="lang-switch"[^>]*><\/button>/, langButton);
   
@@ -169,6 +169,10 @@ function buildPages() {
   ['en.json', 'fr.json'].forEach(file => {
     if (fs.existsSync(file)) fs.copyFileSync(file, path.join(buildDir, file));
   });
+  
+  // Copy CNAME file for custom domain
+  if (fs.existsSync('CNAME')) fs.copyFileSync('CNAME', path.join(buildDir, 'CNAME'));
+  
   if (fs.existsSync('images')) copyRecursiveSync('images', path.join(buildDir, 'images'));
 
   // Generate French version (main page)

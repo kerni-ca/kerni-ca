@@ -1,43 +1,43 @@
-# Настройка домена kerni.ca для GitHub Pages
+# Setting up the kerni.ca domain for GitHub Pages
 
-## Шаги для настройки:
+## Setup Steps:
 
-### 1. В GitHub репозитории:
-1. Перейдите в Settings → Pages
-2. В разделе "Custom domain" введите: `kerni.ca`
-3. Сохраните настройки
-4. Отметьте галочку "Enforce HTTPS" (если доступно)
+### 1. In your GitHub repository:
+1. Go to Settings → Pages
+2. In the "Custom domain" section, enter: `kerni.ca`
+3. Save the settings
+4. Check the "Enforce HTTPS" box (if available)
 
-### 2. В GoDaddy (DNS настройки):
+### 2. In GoDaddy (DNS settings):
 
-#### Вариант A: Использование A-записей (рекомендуется)
-Создайте следующие A-записи в DNS панели GoDaddy:
+#### Option A: Using A records (recommended)
+Create the following A records in the GoDaddy DNS panel:
 
-| Тип | Имя | Значение | TTL |
-|-----|-----|----------|-----|
-| A | @ | 185.199.108.153 | 600 |
-| A | @ | 185.199.109.153 | 600 |
-| A | @ | 185.199.110.153 | 600 |
-| A | @ | 185.199.111.153 | 600 |
+| Type | Name | Value | TTL |
+|------|------|-------|-----|
+| A    |  @   | 185.199.108.153 | 600 |
+| A    |  @   | 185.199.109.153 | 600 |
+| A    |  @   | 185.199.110.153 | 600 |
+| A    |  @   | 185.199.111.153 | 600 |
 
-#### Вариант B: Использование CNAME (альтернативный)
-Создайте CNAME запись:
+#### Option B: Using CNAME (alternative)
+Create a CNAME record:
 
-| Тип | Имя | Значение | TTL |
-|-----|-----|----------|-----|
-| CNAME | @ | your-username.github.io | 600 |
+| Type  | Name | Value                    | TTL |
+|-------|------|--------------------------|-----|
+| CNAME |  @   | your-username.github.io  | 600 |
 
-### 3. Проверка настройки:
-1. Подождите 24-48 часов для распространения DNS
-2. Проверьте доступность сайта по адресу https://kerni.ca
-3. Убедитесь, что HTTPS работает корректно
+### 3. Check your setup:
+1. Wait 24-48 hours for DNS propagation
+2. Check your site at https://kerni.ca
+3. Make sure HTTPS works correctly
 
-### 4. Дополнительные настройки (опционально):
-- Настройте www поддомен (CNAME запись: www → kerni.ca)
-- Настройте редирект с www на основной домен
-- Настройте SSL сертификат (обычно автоматически через GitHub)
+### 4. Additional settings (optional):
+- Set up the www subdomain (CNAME record: www → kerni.ca)
+- Set up a redirect from www to the main domain
+- Set up an SSL certificate (usually automatic via GitHub)
 
-## Примечания:
-- IP адреса GitHub Pages могут измениться, проверяйте актуальные в документации GitHub
-- После изменения DNS может потребоваться время для распространения
-- GitHub автоматически создаст SSL сертификат для вашего домена 
+## Notes:
+- GitHub Pages IP addresses may change, check the latest in the GitHub documentation
+- DNS propagation may take some time after changes
+- GitHub will automatically create an SSL certificate for your domain 

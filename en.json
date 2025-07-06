@@ -50,10 +50,14 @@
   "partner_3_alt": "Logo of Mapei, innovative building materials",
   "partner_4_alt": "Logo of Ardex, high-quality building mixes",
   "contact_title": "Contact Us",
-  "contact_name": "Your Name",
+  "contact_name": "Name",
+  "contact_name_placeholder": "John Doe",
   "contact_phone": "Phone",
+  "contact_phone_placeholder": "(438) 979-2625",
   "contact_email": "Email",
+  "contact_email_placeholder": "john@example.com",
   "contact_message": "Message",
+  "contact_message_placeholder": "I would like to get a quote for a 50m² garage floor.",
   "contact_send": "Send",
   "contact_address_title": "Address",
   "contact_address": "397 Rue Norman, Lachine, QC",
@@ -102,5 +106,9 @@
   "og_title": "KERNI - Quality Epoxy Floors in Montreal",
   "og_description": "Professional epoxy floor installation in Montreal. High-quality materials, experienced craftsmen.",
   "twitter_title": "KERNI - Quality Epoxy Floors in Montreal",
-  "twitter_description": "Professional epoxy floor installation in Montreal. High-quality materials, experienced craftsmen."
+  "twitter_description": "Professional epoxy floor installation in Montreal. High-quality materials, experienced craftsmen.",
+  "contact_name_label": "Name",
+  "contact_phone_label": "Phone",
+  "contact_email_label": "Email",
+  "contact_message_label": "Message"
 } 

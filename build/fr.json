@@ -50,10 +50,14 @@
   "partner_3_alt": "Logo de Mapei, matériaux de construction innovants",
   "partner_4_alt": "Logo de Ardex, mélanges de construction de haute qualité",
   "contact_title": "Contactez-nous",
-  "contact_name": "Votre nom",
+  "contact_name": "Nom",
+  "contact_name_placeholder": "Jean Dupont",
   "contact_phone": "Téléphone",
-  "contact_email": "Courriel",
+  "contact_phone_placeholder": "(438) 979-2625",
+  "contact_email": "Email",
+  "contact_email_placeholder": "jean@example.com",
   "contact_message": "Message",
+  "contact_message_placeholder": "Je souhaite un devis pour un garage de 50m².",
   "contact_send": "Envoyer",
   "contact_address_title": "Adresse",
   "contact_address": "397 Rue Norman, Lachine, QC",
@@ -102,5 +106,9 @@
   "og_title": "KERNI - Sols époxy de qualité à Montréal",
   "og_description": "Installation et réparation professionnelle de sols époxy à Montréal. Matériaux de haute qualité, artisans expérimentés.",
   "twitter_title": "KERNI - Sols époxy de qualité à Montréal",
-  "twitter_description": "Installation et réparation professionnelle de sols époxy à Montréal. Matériaux de haute qualité, artisans expérimentés."
+  "twitter_description": "Installation et réparation professionnelle de sols époxy à Montréal. Matériaux de haute qualité, artisans expérimentés.",
+  "contact_name_label": "Nom",
+  "contact_phone_label": "Téléphone",
+  "contact_email_label": "Email",
+  "contact_message_label": "Message"
 } 

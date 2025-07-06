@@ -1,5 +1,3 @@
-import { sendToTelegram } from './sendToTelegram.js';
-
 // Main site functionality
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize contact form
@@ -13,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Initialize mobile menu
   initMobileMenu();
+  
+  // Initialize phone mask
+  initPhoneMask();
 });
 
 function getCurrentLang() {
@@ -280,5 +281,21 @@ function buildPortfolioTiles() {
     tile.addEventListener('mouseleave', () => { img.classList.remove('hovered'); });
     tile.onclick = () => openCarousel(clientIdx, 0);
     tiles.appendChild(tile);
+  });
+}
+
+function initPhoneMask() {
+  const phoneInputs = document.querySelectorAll('input[name="phone"]');
+  if (!phoneInputs.length) return;
+  phoneInputs.forEach(phoneInput => {
+    phoneInput.addEventListener('input', function(e) {
+      let value = phoneInput.value.replace(/\D/g, '');
+      if (value.length > 10) value = value.slice(0, 10);
+      let formatted = '';
+      if (value.length > 0) formatted = '(' + value.substring(0, 3);
+      if (value.length >= 4) formatted += ') ' + value.substring(3, 6);
+      if (value.length >= 7) formatted += '-' + value.substring(6, 10);
+      phoneInput.value = formatted;
+    });
   });
 }

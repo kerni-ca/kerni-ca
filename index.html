@@ -202,10 +202,18 @@
             <h2 data-i18n="contact_title">contact_title</h2>
             <div class="contact-content">
                 <form class="contact-form">
-                    <input type="text" name="name" data-i18n="contact_name" placeholder="contact_name" required>
-                    <input type="tel" name="phone" data-i18n="contact_phone" placeholder="contact_phone" required>
-                    <input type="email" name="email" data-i18n="contact_email" placeholder="contact_email" required>
-                    <textarea name="message" data-i18n="contact_message" placeholder="contact_message" required></textarea>
+                    <label for="contact-name" data-i18n="contact_name_label">contact_name_label</label>
+                    <input id="contact-name" type="text" name="name" data-i18n-placeholder="contact_name_placeholder" placeholder="contact_name_placeholder" required>
+
+                    <label for="contact-phone" data-i18n="contact_phone_label">contact_phone_label</label>
+                    <input id="contact-phone" type="tel" name="phone" data-i18n-placeholder="contact_phone_placeholder" placeholder="contact_phone_placeholder" required>
+
+                    <label for="contact-email" data-i18n="contact_email_label">contact_email_label</label>
+                    <input id="contact-email" type="email" name="email" data-i18n-placeholder="contact_email_placeholder" placeholder="contact_email_placeholder" required>
+
+                    <label for="contact-message" data-i18n="contact_message_label">contact_message_label</label>
+                    <textarea id="contact-message" name="message" data-i18n-placeholder="contact_message_placeholder" placeholder="contact_message_placeholder" required></textarea>
+
                     <button type="submit" class="submit-button" data-i18n="contact_send">contact_send</button>
                 </form>
                 <div class="contact-info">

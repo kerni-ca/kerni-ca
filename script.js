@@ -1,20 +1,11 @@
-// Main site functionality
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize contact form
-  initContactForm();
-  
-  // Initialize smooth scrolling
-  initSmoothScrolling();
-  
-  // Initialize footer year
-  initFooterYear();
-  
-  // Initialize mobile menu
-  initMobileMenu();
-  
-  // Initialize phone mask
-  initPhoneMask();
-});
+import { sendToTelegram } from './sendToTelegram.js';
+
+// Main site functionality (ES-модуль)
+initContactForm();
+initSmoothScrolling();
+initFooterYear();
+initMobileMenu();
+initPhoneMask();
 
 function getCurrentLang() {
   if (window.location.pathname.includes('/en/')) return 'en';

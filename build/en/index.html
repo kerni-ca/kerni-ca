@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KERNI - Quality Epoxy Floors in Montreal | Professional Installation</title>
-    <meta name="description" content="Professional epoxy floor installation in Montreal. High-quality materials, experienced craftsmen, 10+ years experience. Get free consultation today!">
-    <meta name="keywords" content="epoxy floors Montreal, epoxy floor installation, commercial epoxy floors, industrial epoxy coating, epoxy garage floors, epoxy flooring contractor Montreal">
-    
+    <meta name="description"
+        content="Professional epoxy floor installation in Montreal. High-quality materials, experienced craftsmen, 10+ years experience. Get free consultation today!">
+    <meta name="keywords"
+        content="epoxy floors Montreal, epoxy floor installation, commercial epoxy floors, industrial epoxy coating, epoxy garage floors, epoxy flooring contractor Montreal">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://kerni.ca/">
     <meta property="og:title" content="KERNI - Quality Epoxy Floors in Montreal">
-    <meta property="og:description" content="Professional epoxy floor installation in Montreal. High-quality materials, experienced craftsmen.">
+    <meta property="og:description"
+        content="Professional epoxy floor installation in Montreal. High-quality materials, experienced craftsmen.">
     <meta property="og:image" content="https://kerni.ca/images/header-bg.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://kerni.ca/">
     <meta property="twitter:title" content="KERNI - Quality Epoxy Floors in Montreal">
-    <meta property="twitter:description" content="Professional epoxy floor installation in Montreal. High-quality materials, experienced craftsmen.">
+    <meta property="twitter:description"
+        content="Professional epoxy floor installation in Montreal. High-quality materials, experienced craftsmen.">
     <meta property="twitter:image" content="https://kerni.ca/images/header-bg.jpg">
-    
+
     <link rel="stylesheet" href="../styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +37,7 @@
     <link rel="alternate" hreflang="fr" href="/">
     <link rel="alternate" hreflang="x-default" href="/en/">
 </head>
+
 <body>
 
     <header class="header">
@@ -121,12 +127,15 @@
     <div id="carousel-modal" class="carousel-modal" style="display:none;">
         <div class="carousel-content">
             <span class="carousel-close" id="carousel-close">&times;</span>
-            <button class="carousel-arrow left" id="carousel-prev">&#8592;</button>
             <div class="carousel-img-desc-wrapper">
-                <img id="carousel-img" src="" alt="Portfolio" />
+                <div class="carousel-img">
+
+                    <img id="carousel-img" src="" alt="Portfolio" />
+                    <button class="carousel-arrow left" id="carousel-prev">&lt;</button>
+                    <button class="carousel-arrow right" id="carousel-next">&gt;</button>
+                </div>
                 <p id="carousel-desc"></p>
             </div>
-            <button class="carousel-arrow right" id="carousel-next">&#8594;</button>
         </div>
     </div>
 
@@ -138,7 +147,8 @@
             </div>
             <h3 id="notification-title" >Success!</h3>
             <p id="notification-message" >Your message has been sent successfully.</p>
-            <button id="notification-close" class="notification-btn" >OK</button>
+            <button id="notification-close" class="notification-btn"
+                >OK</button>
         </div>
     </div>
 
@@ -220,16 +230,21 @@
             <div class="contact-content">
                 <form class="contact-form">
                     <label for="contact-name" >Name</label>
-                    <input id="contact-name" type="text" name="name" data-i18n-placeholder="John Doe" placeholder="John Doe" required>
+                    <input id="contact-name" type="text" name="name" data-i18n-placeholder="John Doe"
+                        placeholder="John Doe" required>
 
                     <label for="contact-phone" >Phone</label>
-                    <input id="contact-phone" type="tel" name="phone" data-i18n-placeholder="(438) 979-2625" placeholder="(438) 979-2625" required>
+                    <input id="contact-phone" type="tel" name="phone" data-i18n-placeholder="(438) 979-2625"
+                        placeholder="(438) 979-2625" required>
 
                     <label for="contact-email" >Email</label>
-                    <input id="contact-email" type="email" name="email" data-i18n-placeholder="john@example.com" placeholder="john@example.com" required>
+                    <input id="contact-email" type="email" name="email"
+                        data-i18n-placeholder="john@example.com" placeholder="john@example.com"
+                        required>
 
                     <label for="contact-message" >Message</label>
-                    <textarea id="contact-message" name="message" data-i18n-placeholder="I would like to get a quote for a 50m² garage floor." placeholder="I would like to get a quote for a 50m² garage floor." required></textarea>
+                    <textarea id="contact-message" name="message" data-i18n-placeholder="I would like to get a quote for a 50m² garage floor."
+                        placeholder="I would like to get a quote for a 50m² garage floor." required></textarea>
 
                     <button type="submit" class="submit-button" >Send</button>
                 </form>
@@ -263,4 +278,5 @@
     <script src="../portfolio.js"></script>
     <script src="../script.js" type="module"></script>
 </body>
-</html> 
+
+</html>

@@ -1,5 +1,5 @@
 {
-  "nav_about": "About Usss",
+  "nav_about": "About Us",
   "nav_services": "Services",
   "nav_portfolio": "Portfolio",
   "nav_testimonials": "Testimonials",
@@ -111,4 +111,4 @@
   "contact_phone_label": "Phone",
   "contact_email_label": "Email",
   "contact_message_label": "Message"
-} 
+}

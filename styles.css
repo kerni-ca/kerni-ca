@@ -322,7 +322,7 @@ body {
 .portfolio-tile {
     cursor: pointer;
     width: 320px;
-    height: 240px;
+    height: 200px;
     overflow: hidden;
     border-radius: 15px;
     box-shadow: var(--shadow);
@@ -660,48 +660,84 @@ body {
 
 .carousel-close {
     position: absolute;
-    top: 10px;
+    top: 20px;
     right: 20px;
     font-size: 2rem;
-    color: var(--accent-color);
+    color: #fff;
     cursor: pointer;
     z-index: 2;
     transition: color 0.2s;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    background: none;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.carousel-close:hover {
-    color: var(--white);
+.carousel-close:hover,
+.carousel-close:focus {
+    color: #fff;
+    text-shadow: 0 4px 16px rgba(0,0,0,0.45);
+}
+
+.carousel-close svg {
+    width: 44px;
+    height: 44px;
+    display: block;
 }
 
 .carousel-arrow {
-    background: var(--accent-color);
-    color: var(--dark-bg);
+    background: transparent;
+    color: #fff;
     border: none;
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;
-    font-size: 1.5rem;
+    border-radius: 0;
+    width: 48px;
+    height: 48px;
+    font-size: 2.2rem;
     cursor: pointer;
-    margin: 0 15px;
-    opacity: 0.9;
-    transition: opacity 0.2s, background 0.2s;
-    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.15);
-}
-
-.carousel-arrow.left {
+    opacity: 0.92;
+    transition: opacity 0.2s, background 0.2s, box-shadow 0.2s;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    outline: none;
     position: absolute;
-    left: 20px;
+    transform: translateY(-50%);
 }
-
-.carousel-arrow.right {
-    position: absolute;
-    right: 20px;
+.carousel-arrow svg {
+    display: block;
+    width: 38px;
+    height: 38px;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.18));
+    transition: filter 0.2s;
+}
+.carousel-arrow:hover,
+.carousel-arrow:focus,
+.carousel-arrow:active {
+    opacity: 1;
+    background: transparent !important;
 }
 
 .carousel-arrow:hover {
     opacity: 1;
     background: var(--white);
     color: var(--accent-color);
+}
+
+.carousel-arrow.left {
+    left: 0;
+}
+.carousel-arrow.right {
+    right: 0;
+}
+.carousel-close {
+    top: 10px;
+    right: 10px;
+    font-size: 2.2rem;
 }
 
 #carousel-desc {
@@ -743,6 +779,63 @@ body {
     .testimonials-grid,
     .partners-grid {
         grid-template-columns: 1fr;
+    }
+
+    .carousel-content {
+        flex-direction: column;
+        padding: 0;
+        min-width: 100vw;
+        min-height: 100vh;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        background: #111;
+    }
+    .carousel-img-desc-wrapper {
+        width: 100vw;
+        height: 100vh;
+        min-height: 100vh;
+        min-width: 100vw;
+        padding: 0;
+        align-items: stretch;
+        justify-content: stretch;
+        display: flex;
+        flex-direction: column;
+    }
+    .carousel-img {
+        width: 100vw;
+        height: 100vh;
+        min-width: 100vw;
+        min-height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        border-radius: 0;
+        align-items: stretch;
+        justify-content: stretch;
+        display: flex;
+        position: relative;
+        background: #111;
+        padding: 0;
+        margin: 0;
+    }
+    #carousel-img {
+        width: 100vw;
+        height: 100vh;
+        min-width: 100vw;
+        min-height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+        object-fit: cover;
+        border-radius: 0;
+        display: block;
+        background: #111;
+        margin: 0;
+        padding: 0;
+    }
+    #carousel-desc {
+        font-size: 1em;
+        padding: 10px 0;
     }
 }
 
@@ -808,7 +901,6 @@ img {
 .carousel-img {
     max-width: 98vw;
     max-height: 90vh;
-    min-height: 90vh;
     border-radius: 8px;
     position: relative;
     display: flex;
@@ -816,10 +908,18 @@ img {
 }
 
 #carousel-desc {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    padding: 44px 0 28px 0;
     text-align: center;
-    margin: 10px 0 0 0;
-    font-size: 1.1em;
-    color: var(--accent-color);
+    background: linear-gradient(0deg, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.88) 30%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.45) 75%, rgba(0,0,0,0.0) 100%);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 1px 0 #fff, 0 0 2px #fff;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    pointer-events: none;
 }
 
 #loading-overlay {
@@ -1005,4 +1105,26 @@ img {
     background: var(--accent-color);
     color: var(--dark-bg);
     border-color: var(--accent-color);
+}
+
+.carousel-arrow, .carousel-close {
+    position: absolute;
+    z-index: 10;
+}
+.carousel-arrow::before, .carousel-close::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    box-shadow: 0 4px 18px 0 rgba(0,0,0,0.45);
+    z-index: -1;
+    pointer-events: none;
+}
+.carousel-arrow svg, .carousel-close svg {
+    filter: drop-shadow(0 2px 8px #000) drop-shadow(0 0px 2px #fff);
 }

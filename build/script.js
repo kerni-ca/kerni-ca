@@ -1,6 +1,6 @@
 import { sendToTelegram } from './sendToTelegram.js';
 
-// Main site functionality (ES-модуль)
+// Main site functionality (ES-module)
 initContactForm();
 initSmoothScrolling();
 initFooterYear();
@@ -15,13 +15,13 @@ function getCurrentLang() {
 function initContactForm() {
   const form = document.querySelector('.contact-form');
   if (!form) return;
-  
-  form.addEventListener('submit', async function(e) {
+
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    
+
     const formData = new FormData(form);
     const currentLang = getCurrentLang();
-    
+
     // Get IP address
     let ip = 'Unknown';
     try {
@@ -31,7 +31,7 @@ function initContactForm() {
     } catch (error) {
       console.error('Error getting IP:', error);
     }
-    
+
     const data = {
       name: formData.get('name'),
       phone: formData.get('phone'),
@@ -40,7 +40,7 @@ function initContactForm() {
       language: currentLang,
       ip: ip
     };
-    
+
     try {
       await sendToTelegram(data);
       showNotification('success');
@@ -57,9 +57,9 @@ function showNotification(type) {
   const title = document.getElementById('notification-title');
   const message = document.getElementById('notification-message');
   const icon = document.getElementById('notification-icon');
-  
+
   if (!modal || !title || !message || !icon) return;
-  
+
   if (type === 'success') {
     title.textContent = 'Success!';
     message.textContent = 'Your message has been sent successfully.';
@@ -71,9 +71,9 @@ function showNotification(type) {
     icon.textContent = '✗';
     icon.style.color = '#f44336';
   }
-  
+
   modal.style.display = 'flex';
-  
+
   // Auto-hide after 5 seconds
   setTimeout(() => {
     modal.style.display = 'none';
@@ -83,11 +83,11 @@ function showNotification(type) {
 function initSmoothScrolling() {
   const links = document.querySelectorAll('a[href^="#"]');
   links.forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.addEventListener('click', function (e) {
       e.preventDefault();
       const targetId = this.getAttribute('href');
       const targetElement = document.querySelector(targetId);
-      
+
       if (targetElement) {
         targetElement.scrollIntoView({
           behavior: 'smooth',
@@ -109,14 +109,14 @@ function initFooterYear() {
 function initMobileMenu() {
   const navLinks = document.querySelector('.nav-links');
   const hamburger = document.querySelector('.hamburger');
-  
+
   if (!navLinks || !hamburger) return;
-  
-  hamburger.addEventListener('click', function() {
+
+  hamburger.addEventListener('click', function () {
     navLinks.classList.toggle('active');
     hamburger.classList.toggle('active');
   });
-  
+
   // Close menu when clicking on a link
   const links = navLinks.querySelectorAll('a');
   links.forEach(link => {
@@ -128,19 +128,46 @@ function initMobileMenu() {
 }
 
 // Close notification modal
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+  // Close notification modal
   const closeBtn = document.getElementById('notification-close');
   const modal = document.getElementById('notification-modal');
-  
+
   if (closeBtn && modal) {
     closeBtn.addEventListener('click', () => {
       modal.style.display = 'none';
     });
-    
+
     // Close on background click
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.style.display = 'none';
+      }
+    });
+  }
+
+  // Click on carousel background closes it
+  const carouselModal = document.getElementById('carousel-modal');
+  if (carouselModal) {
+    carouselModal.addEventListener('click', function (e) {
+      if (e.target === carouselModal) {
+        closeCarousel();
+      }
+    });
+  }
+
+  // Удаляю старую инициализацию service-modal, чтобы не было конфликтов с динамическим шаблоном
+  // Удаляю вызов renderServices() из DOMContentLoaded, чтобы не очищать карточки до загрузки словаря
+  const grid = document.querySelector('.services-grid');
+  if (grid) {
+    grid.addEventListener('click', function (e) {
+      const card = e.target.closest('.service-card');
+      if (card && grid.contains(card)) {
+        const key = card.getAttribute('data-service-key');
+        if (key) {
+          const modal = document.getElementById('service-modal-' + key);
+          if (modal) modal.style.display = 'flex';
+        }
       }
     });
   }
@@ -149,9 +176,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // --- Dynamic portfolio generation ---
 // Example data structure (can be extended)
 const portfolioData = [
-  { client: 1, images: [ '1/1.jpg', '1/2.jpg', '1/3.jpg', '1/4.jpg' ], titleKey: 'portfolio_garage' },
-  { client: 2, images: [ '2/1.jpg', '2/2.jpg', '2/3.jpg', '2/4.jpg' ], titleKey: 'portfolio_shop' },
-  { client: 3, images: [ '3/1.jpg', '3/2.jpg', '3/3.jpg', '3/4.jpg' ], titleKey: 'portfolio_livingroom' },
+  { client: 1, images: ['1/1.jpg', '1/2.jpg', '1/3.jpg', '1/4.jpg'], titleKey: 'portfolio_garage' },
+  { client: 2, images: ['2/1.jpg', '2/2.jpg', '2/3.jpg', '2/4.jpg'], titleKey: 'portfolio_shop' },
+  { client: 3, images: ['3/1.jpg', '3/2.jpg', '3/3.jpg', '3/4.jpg'], titleKey: 'portfolio_livingroom' },
 ];
 
 // Global translation dictionary
@@ -203,12 +230,12 @@ function buildPortfolioGrid() {
       const image = document.createElement('img');
       image.src = 'images/portfolio/' + img;
       let desc = '';
-      if (window.portfolioDescriptions[client.client] && window.portfolioDescriptions[client.client][imgIdx+1]) {
-        desc = window.portfolioDescriptions[client.client][imgIdx+1];
+      if (window.portfolioDescriptions[client.client] && window.portfolioDescriptions[client.client][imgIdx + 1]) {
+        desc = window.portfolioDescriptions[client.client][imgIdx + 1];
       }
       const overlay = document.createElement('div');
       overlay.className = 'portfolio-overlay';
-      overlay.innerHTML = `<h3>${desc ? desc : 'Photo ' + (imgIdx+1)}</h3>`;
+      overlay.innerHTML = `<h3>${desc ? desc : 'Photo ' + (imgIdx + 1)}</h3>`;
       item.appendChild(image);
       item.appendChild(overlay);
       group.appendChild(item);
@@ -279,7 +306,7 @@ function initPhoneMask() {
   const phoneInputs = document.querySelectorAll('input[name="phone"]');
   if (!phoneInputs.length) return;
   phoneInputs.forEach(phoneInput => {
-    phoneInput.addEventListener('input', function(e) {
+    phoneInput.addEventListener('input', function (e) {
       let value = phoneInput.value.replace(/\D/g, '');
       if (value.length > 10) value = value.slice(0, 10);
       let formatted = '';
@@ -290,3 +317,61 @@ function initPhoneMask() {
     });
   });
 }
+
+function openServiceModal(title, desc) {
+  // Удаляем предыдущий модал, если есть
+  const oldModal = document.getElementById('service-modal');
+  if (oldModal) oldModal.remove();
+  // Клонируем шаблон
+  const tpl = document.getElementById('service-modal-template');
+  const modalFragment = tpl.content.cloneNode(true);
+  document.body.appendChild(modalFragment);
+  const modal = document.getElementById('service-modal');
+  const closeBtn = document.getElementById('service-modal-close');
+  const titleEl = document.getElementById('service-modal-title');
+  const descEl = document.getElementById('service-modal-desc');
+  titleEl.textContent = title;
+  descEl.textContent = desc;
+  modal.style.display = 'flex';
+  // Закрытие по крестику
+  closeBtn.addEventListener('click', function () {
+    modal.remove();
+  });
+  // Закрытие по клику вне окна
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) modal.remove();
+  });
+}
+
+function renderServices() {
+  const dict = window.i18nDict || {};
+  const grid = document.querySelector('.services-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  const serviceKeys = Object.keys(dict)
+    .filter(k => k.startsWith('services_') && !k.endsWith('_title') && !k.endsWith('_desc'));
+  if (serviceKeys.length === 0) return;
+  serviceKeys.sort();
+  const cards = serviceKeys.map((key, idx) => {
+    const descKey = key + '_desc';
+    const card = document.createElement('div');
+    card.className = 'service-card';
+    card.setAttribute('data-service-key', key);
+    const h3 = document.createElement('h3');
+    h3.textContent = dict[key] || '';
+    const p = document.createElement('p');
+    p.textContent = dict[descKey] || '';
+    card.appendChild(h3);
+    card.appendChild(p);
+    card.addEventListener('click', function () {
+      const modal = document.getElementById('service-modal-' + key);
+      if (modal) modal.style.display = 'flex';
+    });
+    return card;
+  });
+  cards.forEach(card => grid.appendChild(card));
+}
+window.renderServices = renderServices;
+window.openServiceModal = openServiceModal;
+
+// Если словарь меняется динамически (например, при смене языка), можно вызвать renderServices() повторно.

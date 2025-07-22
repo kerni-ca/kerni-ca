@@ -13,6 +13,7 @@ async function loadLang() {
   const jsonPath = isSubfolder ? '../' + lang + '.json' : lang + '.json';
   const res = await fetch(jsonPath);
   const dict = await res.json();
+  window.i18nDict = dict;
       // Update <title> and <meta name='description'>
   if (dict.title) {
     document.title = dict.title;
@@ -38,6 +39,7 @@ async function loadLang() {
       e.alt = value;
     });
   }
+  if (typeof renderServices === 'function') renderServices();
 }
 
 function renderLangSwitch() {

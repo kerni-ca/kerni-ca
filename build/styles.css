@@ -14,7 +14,8 @@ html {
     --card-bg: #1e1e1e;
     --border-color: #333;
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --transition: all 0.3s ease;
+    --transition: all 0.3s ease-in-out;
+    --transition-fast: all 0.2s ease-in-out;
 }
 
 * {
@@ -24,7 +25,12 @@ html {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Circular,
+        -apple-system,
+        BlinkMacSystemFont,
+        Roboto,
+        Helvetica Neue,
+        sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background: var(--dark-bg);
@@ -34,6 +40,63 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 15, 15, 0.96);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    max-width: 98vw;
+    max-height: 98vh;
+    margin: auto;
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2.2rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.2s;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    background: none;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close-button svg {
+    width: 44px;
+    height: 44px;
+    display: block;
+    filter: drop-shadow(0 6px 6px #000);
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+    color: #fff;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
 
 /* Header & Navigation */
@@ -424,18 +487,23 @@ body {
 }
 
 .submit-button {
-    padding: 15px 30px;
-    background: var(--secondary-color);
-    color: var(--white);
-    border: none;
-    border-radius: 8px;
+    padding: 16px 18px;
+    background: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 24px;
     cursor: pointer;
+    font-size: larger;
     font-weight: 600;
-    transition: var(--transition);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: var(--transition-fast);
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
 }
 
 .submit-button:hover {
-    background: var(--primary-color);
+    background: var(--accent-color);
+    color: var(--text-dark);
 }
 
 .contact-info {
@@ -626,66 +694,11 @@ body {
 }
 
 /* Portfolio Carousel Modal */
-.carousel-modal {
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(15, 15, 15, 0.96);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-content {
-    position: relative;
-    background: var(--card-bg);
-    border-radius: 16px;
-    padding: 30px 30px 20px 30px;
-    box-shadow: var(--shadow);
-    display: flex;
-    align-items: center;
-    min-width: 100vw;
-    min-height: 100vh;
-}
-
-.carousel-content img {
+.modal-content img {
     max-width: 98vw;
     max-height: 90vh;
     border-radius: 8px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
-}
-
-.carousel-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2rem;
-    color: #fff;
-    cursor: pointer;
-    z-index: 2;
-    transition: color 0.2s;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
-    background: none;
-    border: none;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-close:hover,
-.carousel-close:focus {
-    color: #fff;
-    text-shadow: 0 4px 16px rgba(0,0,0,0.45);
-}
-
-.carousel-close svg {
-    width: 44px;
-    height: 44px;
-    display: block;
 }
 
 .carousel-arrow {
@@ -697,7 +710,6 @@ body {
     height: 48px;
     font-size: 2.2rem;
     cursor: pointer;
-    margin: 0 15px;
     opacity: 0.92;
     transition: opacity 0.2s, background 0.2s, box-shadow 0.2s;
     box-shadow: none;
@@ -709,18 +721,20 @@ body {
     position: absolute;
     transform: translateY(-50%);
 }
+
 .carousel-arrow svg {
     display: block;
     width: 38px;
     height: 38px;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.18));
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.18));
     transition: filter 0.2s;
 }
+
 .carousel-arrow:hover,
 .carousel-arrow:focus,
 .carousel-arrow:active {
     opacity: 1;
-    background: transparent !important;
+    background: transparent;
 }
 
 .carousel-arrow:hover {
@@ -730,20 +744,16 @@ body {
 }
 
 .carousel-arrow.left {
-    left: 0;
+    left: 10px;
 }
+
 .carousel-arrow.right {
-    right: 0;
-}
-.carousel-close {
-    top: 10px;
     right: 10px;
-    font-size: 2.2rem;
 }
 
 #carousel-desc {
     text-align: center;
-    margin: 10px 0 0 0;
+    margin: 10px 10px 0 10px;
     font-size: 1.1em;
     color: var(--accent-color);
 }
@@ -793,6 +803,7 @@ body {
         box-shadow: none;
         background: #111;
     }
+
     .carousel-img-desc-wrapper {
         width: 100vw;
         height: 100vh;
@@ -804,6 +815,7 @@ body {
         display: flex;
         flex-direction: column;
     }
+
     .carousel-img {
         width: 100vw;
         height: 100vh;
@@ -820,6 +832,7 @@ body {
         padding: 0;
         margin: 0;
     }
+
     #carousel-img {
         width: 100vw;
         height: 100vh;
@@ -834,6 +847,7 @@ body {
         margin: 0;
         padding: 0;
     }
+
     #carousel-desc {
         font-size: 1em;
         padding: 10px 0;
@@ -914,10 +928,10 @@ img {
     right: 0;
     bottom: 0;
     z-index: 3;
-    padding: 44px 0 28px 0;
+    padding: 44px 10px 28px 0;
     text-align: center;
-    background: linear-gradient(0deg, rgba(0,0,0,0.97) 0%, rgba(0,0,0,0.88) 30%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.45) 75%, rgba(0,0,0,0.0) 100%);
-    text-shadow: 0 2px 8px rgba(0,0,0,0.25), 0 1px 0 #fff, 0 0 2px #fff;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.97) 0%, rgba(0, 0, 0, 0.88) 30%, rgba(0, 0, 0, 0.75) 55%, rgba(0, 0, 0, 0.45) 75%, rgba(0, 0, 0, 0.0) 100%);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 1px 0 #fff, 0 0 2px #fff;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     pointer-events: none;
@@ -1093,7 +1107,7 @@ img {
     font-weight: 700;
     margin-left: 8px;
     cursor: pointer;
-    transition: background 0.18s, color 0.18s, border 0.18s;
+    transition: var(--transition-fast);
     box-shadow: none;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -1106,4 +1120,51 @@ img {
     background: var(--accent-color);
     color: var(--dark-bg);
     border-color: var(--accent-color);
+}
+
+.service-modal-content {
+    position: relative;
+    max-width: 420px;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 38px 32px 32px 32px;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+.service-modal-body {
+    width: 100%;
+    margin-top: 12px;
+}
+
+#service-modal-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+#service-modal-desc {
+    font-size: 1rem;
+    color: #fff;
+    line-height: 1.7;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 600px) {
+    .service-modal-content {
+        max-width: 98vw;
+        padding: 24px 10px 18px 10px;
+    }
+
+    #service-modal-title {
+        font-size: 1.1rem;
+    }
+
+    #service-modal-desc {
+        font-size: 0.98rem;
+    }
 }

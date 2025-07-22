@@ -739,7 +739,6 @@ body {
 
 .carousel-arrow:hover {
     opacity: 1;
-    background: var(--white);
     color: var(--accent-color);
 }
 

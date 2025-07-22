@@ -107,7 +107,7 @@ function generateServiceModals(translations) {
             </svg>
           </button>
           <div class="service-modal-body">
-            <h3>${translations[key] || ''}</h3>
+            <h3 class="modal-header">${translations[key] || ''}</h3>
             <p>${translations[descKey] || ''}</p>
           </div>
         </div>

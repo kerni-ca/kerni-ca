@@ -99,6 +99,26 @@ body {
     text-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
 
+@media (max-width: 768px),
+(aspect-ratio < 1) {
+    .modal-content {
+        flex-direction: column;
+        padding: 0;
+        min-width: 100vw;
+        min-height: 100vh;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        background: #111;
+    }
+
+    .modal-header {
+        font-size: larger;
+        padding: 18px 0;
+    }
+}
+
 /* Header & Navigation */
 .header {
     background: linear-gradient(rgba(26, 26, 26, 0.95), rgba(26, 26, 26, 0.95)),
@@ -286,6 +306,7 @@ body {
 }
 
 .service-card {
+    cursor: pointer;
     background: var(--card-bg);
     padding: 40px 30px;
     border-radius: 20px;
@@ -789,18 +810,6 @@ body {
     .testimonials-grid,
     .partners-grid {
         grid-template-columns: 1fr;
-    }
-
-    .carousel-content {
-        flex-direction: column;
-        padding: 0;
-        min-width: 100vw;
-        min-height: 100vh;
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
-        box-shadow: none;
-        background: #111;
     }
 
     .carousel-img-desc-wrapper {

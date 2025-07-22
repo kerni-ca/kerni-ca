@@ -1,0 +1,55 @@
+/* Основные типографические стили для kerni */
+
+:root {
+  --font-main: 'Montserrat', Arial, sans-serif;
+  --font-size-base: 16px;
+  --font-size-lg: 22px;
+  --font-size-md: 18px;
+  --font-size-sm: 14px;
+  --font-size-xs: 12px;
+  --font-weight-normal: 400;
+  --font-weight-light: 300;
+  --font-weight-bold: 700;
+  --line-height-base: 1.6;
+  --line-height-tight: 1.2;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-base);
+}
+
+h1, .h1 {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+h2, .h2 {
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+h3, .h3 {
+  font-size: 1.4rem;
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+p, .text {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-base);
+}
+
+.caption, .carousel-caption, #carousel-desc {
+  font-size: 13px;
+  font-weight: var(--font-weight-light);
+  line-height: 1.5;
+  color: #fff;
+}
+
+/* Можно добавить другие классы для мелких подписей, кнопок и т.д. */ 

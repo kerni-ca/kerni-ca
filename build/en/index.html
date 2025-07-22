@@ -26,6 +26,7 @@
         content="Professional epoxy floor installation in Montreal. High-quality materials, experienced craftsmen.">
     <meta property="twitter:image" content="https://kerni.ca/images/header-bg.jpg">
 
+    <link rel="stylesheet" href="typography.css">
     <link rel="stylesheet" href="../styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -126,13 +127,47 @@
 
     <div id="carousel-modal" class="carousel-modal" style="display:none;">
         <div class="carousel-content">
-            <span class="carousel-close" id="carousel-close">&times;</span>
             <div class="carousel-img-desc-wrapper">
                 <div class="carousel-img">
 
                     <img id="carousel-img" src="" alt="Portfolio" />
-                    <button class="carousel-arrow left" id="carousel-prev">&lt;</button>
-                    <button class="carousel-arrow right" id="carousel-next">&gt;</button>
+                    <button class="carousel-close" id="carousel-close" aria-label="Close">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#shadow-x)">
+              <line x1="12" y1="12" x2="32" y2="32" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>
+              <line x1="32" y1="12" x2="12" y2="32" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/>
+            </g>
+            <defs>
+              <filter id="shadow-x" x="0" y="0" width="44" height="44" filterUnits="userSpaceOnUse">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.45"/>
+              </filter>
+            </defs>
+          </svg>
+        </button>
+        <button class="carousel-arrow left" id="carousel-prev" aria-label="Previous">
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#shadow-left)">
+              <path d="M24 30L14 19L24 8" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+              <filter id="shadow-left" x="0" y="0" width="38" height="38" filterUnits="userSpaceOnUse">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.45"/>
+              </filter>
+            </defs>
+          </svg>
+        </button>
+        <button class="carousel-arrow right" id="carousel-next" aria-label="Next">
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#shadow-right)">
+              <path d="M14 8L24 19L14 30" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+              <filter id="shadow-right" x="0" y="0" width="38" height="38" filterUnits="userSpaceOnUse">
+                <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.45"/>
+              </filter>
+            </defs>
+          </svg>
+        </button>
                 </div>
                 <p id="carousel-desc"></p>
             </div>

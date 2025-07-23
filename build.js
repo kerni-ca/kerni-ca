@@ -63,10 +63,11 @@ function generateServicesGrid(html, translations) {
   const servicesGridRegex = /<div class="services-grid"><\/div>/;
   // Собираем все ключи services_* и services_*_desc
   const serviceKeys = Object.keys(translations)
-    .filter(k => k.startsWith('services_') && !k.endsWith('_title') && !k.endsWith('_desc'));
+    .filter(k => k.startsWith('services_') && !k.endsWith('_title') && !k.endsWith('_desc') && !k.endsWith('_modal'));
   serviceKeys.sort();
   const servicesHTML = serviceKeys.map(key => {
     const descKey = key + '_desc';
+    // ВАЖНО: только descKey, не modalKey!
     return `
       <div class="service-card" data-service-key="${key}">
         <h3>${translations[key]}</h3>
@@ -77,12 +78,59 @@ function generateServicesGrid(html, translations) {
   return html.replace(servicesGridRegex, `<div class="services-grid">${servicesHTML}</div>`);
 }
 
-function generateServiceModals(translations) {
+function generateServiceModals(translations, lang = DEFAULT_LANG) {
+  const fs = require('fs');
+  const path = require('path');
   const serviceKeys = Object.keys(translations)
-    .filter(k => k.startsWith('services_') && !k.endsWith('_title') && !k.endsWith('_desc'));
+    .filter(k => k.startsWith('services_') && !k.endsWith('_title') && !k.endsWith('_desc') && !k.endsWith('_modal'));
   serviceKeys.sort();
+  // Абсолютный путь для картинок
+  const imageBasePath = '/images/services/';
+  // SVG стрелки как в portfolio
+  const leftArrowSVG = `<svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.5 31L13.5 19L24.5 7" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+  const rightArrowSVG = `<svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 7L24.5 19L13.5 31" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   return serviceKeys.map(key => {
     const descKey = key + '_desc';
+    const modalKey = key + '_modal';
+    // Проверяем наличие картинок
+    const imagesDir = path.join(__dirname, 'images', 'services', key);
+    let images = [];
+    try {
+      if (fs.existsSync(imagesDir)) {
+        images = fs.readdirSync(imagesDir)
+          .filter(f => /^(\d+)\.(jpg|jpeg|png|webp)$/i.test(f))
+          .sort((a, b) => parseInt(a) - parseInt(b));
+      }
+    } catch (e) { images = []; }
+    // Генерируем HTML для карусели, если есть картинки
+    let carouselHTML = '';
+    if (images.length > 0) {
+      carouselHTML = `
+        <div class="service-carousel">
+          <div class="carousel-img-wrapper">
+            <button class="carousel-arrow left" onclick="serviceCarouselPrev('${key}', '${imageBasePath}')" aria-label="Previous image">${leftArrowSVG}</button>
+            <img id="service-carousel-img-${key}" src="${imageBasePath}${key}/${images[0]}" alt="" />
+            <button class="carousel-arrow right" onclick="serviceCarouselNext('${key}', '${imageBasePath}')" aria-label="Next image">${rightArrowSVG}</button>
+          </div>
+        </div>
+        <script>
+          window.serviceCarousels = window.serviceCarousels || {};
+          window.serviceCarousels['${key}'] = { images: ${JSON.stringify(images)}, idx: 0 };
+          function serviceCarouselPrev(key, basePath) {
+            var c = window.serviceCarousels[key];
+            if (!c) return;
+            c.idx = (c.idx - 1 + c.images.length) % c.images.length;
+            document.getElementById('service-carousel-img-' + key).src = basePath + key + '/' + c.images[c.idx];
+          }
+          function serviceCarouselNext(key, basePath) {
+            var c = window.serviceCarousels[key];
+            if (!c) return;
+            c.idx = (c.idx + 1) % c.images.length;
+            document.getElementById('service-carousel-img-' + key).src = basePath + key + '/' + c.images[c.idx];
+          }
+        </script>
+      `;
+    }
     return `
       <div id="service-modal-${key}" class="modal-overlay" style="display:none;"
            onclick="this.style.display='none';">
@@ -108,7 +156,8 @@ function generateServiceModals(translations) {
           </button>
           <div class="service-modal-body">
             <h3 class="modal-header">${translations[key] || ''}</h3>
-            <p>${translations[descKey] || ''}</p>
+            <p>${translations[modalKey] || translations[descKey] || ''}</p>
+            ${carouselHTML}
           </div>
         </div>
       </div>

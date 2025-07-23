@@ -110,5 +110,6 @@
   "contact_name_label": "Nom",
   "contact_phone_label": "Téléphone",
   "contact_email_label": "Email",
-  "contact_message_label": "Message"
-} 
+  "contact_message_label": "Message",
+  "services_industrial_modal": "Ceci est une description détaillée pour la fenêtre modale des sols industriels. Elle peut différer de la description sur le tile."
+}

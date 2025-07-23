@@ -63,8 +63,8 @@
                             >Partners</a></li>
                     <li><a href="#contact"
                             >Contact</a></li>
-                    <li><button id="lang-switch" class="lang-btn" onclick="window.location.href='/'" title="Passer en français">FR</button></li>
                 </ul>
+                <button id="lang-switch" class="lang-btn" onclick="window.location.href='/'" title="Passer en français">FR</button>
             </nav>
             <div class="hero">
                 <h1 >Modern Epoxy Floors</h1>
@@ -150,7 +150,8 @@
                 <div class="carousel-img-desc-wrapper">
                     <div class="carousel-img">
 
-                        <img id="carousel-img" src alt="Portfolio" />
+                        <img id="carousel-img" class="modal-img" src
+                            alt="Portfolio" />
                         <button class="modal-close-button" id="carousel-close"
                             aria-label="Close">
                             <svg width="44" height="44" viewBox="0 0 44 44"
@@ -419,7 +420,32 @@
           </button>
           <div class="service-modal-body">
             <h3 class="modal-header">Anti-slip Coatings</h3>
-            <p>Safe solutions for public spaces</p>
+            <p>Safety is our top priority with our anti-slip epoxy coatings, designed for public spaces, walkways, and areas exposed to moisture. These specialized floors provide excellent traction, reducing the risk of slips and falls even in challenging conditions. Our anti-slip solutions are customizable to meet specific safety standards and can be applied over new or existing surfaces. Choose our expertise to ensure a secure and compliant environment for your staff and visitors.</p>
+            
+        <div class="service-carousel">
+          <div class="carousel-img-wrapper">
+            <button class="carousel-arrow left" onclick="serviceCarouselPrev('services_anti', '/images/services/')" aria-label="Previous image"><svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.5 31L13.5 19L24.5 7" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <img id="service-carousel-img-services_anti" src="/images/services/services_anti/1.jpg" alt="" />
+            <button class="carousel-arrow right" onclick="serviceCarouselNext('services_anti', '/images/services/')" aria-label="Next image"><svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 7L24.5 19L13.5 31" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+        <script>
+          window.serviceCarousels = window.serviceCarousels || {};
+          window.serviceCarousels['services_anti'] = { images: ["1.jpg","2.jpg","3.jpg"], idx: 0 };
+          function serviceCarouselPrev(key, basePath) {
+            var c = window.serviceCarousels[key];
+            if (!c) return;
+            c.idx = (c.idx - 1 + c.images.length) % c.images.length;
+            document.getElementById('service-carousel-img-' + key).src = basePath + key + '/' + c.images[c.idx];
+          }
+          function serviceCarouselNext(key, basePath) {
+            var c = window.serviceCarousels[key];
+            if (!c) return;
+            c.idx = (c.idx + 1) % c.images.length;
+            document.getElementById('service-carousel-img-' + key).src = basePath + key + '/' + c.images[c.idx];
+          }
+        </script>
+      
           </div>
         </div>
       </div>
@@ -449,7 +475,32 @@
           </button>
           <div class="service-modal-body">
             <h3 class="modal-header">Decorative Floors</h3>
-            <p>Unique design solutions for commercial spaces</p>
+            <p>Transform your commercial or residential space with our decorative epoxy flooring solutions. We offer a wide range of colors, patterns, and finishes, including metallic and terrazzo effects, to create a unique and visually stunning environment. Our decorative coatings are not only beautiful but also highly durable, easy to maintain, and resistant to stains and scratches. Let us help you bring your design vision to life with a floor that combines style and performance.</p>
+            
+        <div class="service-carousel">
+          <div class="carousel-img-wrapper">
+            <button class="carousel-arrow left" onclick="serviceCarouselPrev('services_decorative', '/images/services/')" aria-label="Previous image"><svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.5 31L13.5 19L24.5 7" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <img id="service-carousel-img-services_decorative" src="/images/services/services_decorative/1.jpg" alt="" />
+            <button class="carousel-arrow right" onclick="serviceCarouselNext('services_decorative', '/images/services/')" aria-label="Next image"><svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 7L24.5 19L13.5 31" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+        <script>
+          window.serviceCarousels = window.serviceCarousels || {};
+          window.serviceCarousels['services_decorative'] = { images: ["1.jpg"], idx: 0 };
+          function serviceCarouselPrev(key, basePath) {
+            var c = window.serviceCarousels[key];
+            if (!c) return;
+            c.idx = (c.idx - 1 + c.images.length) % c.images.length;
+            document.getElementById('service-carousel-img-' + key).src = basePath + key + '/' + c.images[c.idx];
+          }
+          function serviceCarouselNext(key, basePath) {
+            var c = window.serviceCarousels[key];
+            if (!c) return;
+            c.idx = (c.idx + 1) % c.images.length;
+            document.getElementById('service-carousel-img-' + key).src = basePath + key + '/' + c.images[c.idx];
+          }
+        </script>
+      
           </div>
         </div>
       </div>
@@ -479,7 +530,8 @@
           </button>
           <div class="service-modal-body">
             <h3 class="modal-header">Industrial Floors</h3>
-            <p>Durable and wear-resistant coatings for industrial premises</p>
+            <p>Our industrial epoxy floors are engineered for maximum durability and resistance to heavy loads, chemicals, and abrasion. Ideal for factories, warehouses, and production facilities, these coatings ensure a seamless, easy-to-clean surface that meets the highest safety and hygiene standards. We offer tailored solutions for every industrial need, including anti-static and slip-resistant options. Trust our expertise to protect your workspace and optimize operational efficiency.</p>
+            
           </div>
         </div>
       </div>

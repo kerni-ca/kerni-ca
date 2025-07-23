@@ -63,8 +63,8 @@
                             >Partenaires</a></li>
                     <li><a href="#contact"
                             >Contact</a></li>
-                    <li><button id="lang-switch" class="lang-btn" onclick="window.location.href='/en/'" title="Switch to English">EN</button></li>
                 </ul>
+                <button id="lang-switch" class="lang-btn" onclick="window.location.href='/en/'" title="Switch to English">EN</button>
             </nav>
             <div class="hero">
                 <h1 >Sols époxy modernes</h1>
@@ -150,7 +150,8 @@
                 <div class="carousel-img-desc-wrapper">
                     <div class="carousel-img">
 
-                        <img id="carousel-img" src alt="Portfolio" />
+                        <img id="carousel-img" class="modal-img" src
+                            alt="Portfolio" />
                         <button class="modal-close-button" id="carousel-close"
                             aria-label="Close">
                             <svg width="44" height="44" viewBox="0 0 44 44"
@@ -420,6 +421,31 @@
           <div class="service-modal-body">
             <h3 class="modal-header">Revêtements antidérapants</h3>
             <p>Solutions sûres pour les espaces publics</p>
+            
+        <div class="service-carousel">
+          <div class="carousel-img-wrapper">
+            <button class="carousel-arrow left" onclick="serviceCarouselPrev('services_anti', '/images/services/')" aria-label="Previous image"><svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.5 31L13.5 19L24.5 7" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <img id="service-carousel-img-services_anti" src="/images/services/services_anti/1.jpg" alt="" />
+            <button class="carousel-arrow right" onclick="serviceCarouselNext('services_anti', '/images/services/')" aria-label="Next image"><svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 7L24.5 19L13.5 31" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+        <script>
+          window.serviceCarousels = window.serviceCarousels || {};
+          window.serviceCarousels['services_anti'] = { images: ["1.jpg","2.jpg","3.jpg"], idx: 0 };
+          function serviceCarouselPrev(key, basePath) {
+            var c = window.serviceCarousels[key];
+            if (!c) return;
+            c.idx = (c.idx - 1 + c.images.length) % c.images.length;
+            document.getElementById('service-carousel-img-' + key).src = basePath + key + '/' + c.images[c.idx];
+          }
+          function serviceCarouselNext(key, basePath) {
+            var c = window.serviceCarousels[key];
+            if (!c) return;
+            c.idx = (c.idx + 1) % c.images.length;
+            document.getElementById('service-carousel-img-' + key).src = basePath + key + '/' + c.images[c.idx];
+          }
+        </script>
+      
           </div>
         </div>
       </div>
@@ -450,6 +476,31 @@
           <div class="service-modal-body">
             <h3 class="modal-header">Sols décoratifs</h3>
             <p>Solutions de design uniques pour les espaces commerciaux</p>
+            
+        <div class="service-carousel">
+          <div class="carousel-img-wrapper">
+            <button class="carousel-arrow left" onclick="serviceCarouselPrev('services_decorative', '/images/services/')" aria-label="Previous image"><svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.5 31L13.5 19L24.5 7" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <img id="service-carousel-img-services_decorative" src="/images/services/services_decorative/1.jpg" alt="" />
+            <button class="carousel-arrow right" onclick="serviceCarouselNext('services_decorative', '/images/services/')" aria-label="Next image"><svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 7L24.5 19L13.5 31" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+        <script>
+          window.serviceCarousels = window.serviceCarousels || {};
+          window.serviceCarousels['services_decorative'] = { images: ["1.jpg"], idx: 0 };
+          function serviceCarouselPrev(key, basePath) {
+            var c = window.serviceCarousels[key];
+            if (!c) return;
+            c.idx = (c.idx - 1 + c.images.length) % c.images.length;
+            document.getElementById('service-carousel-img-' + key).src = basePath + key + '/' + c.images[c.idx];
+          }
+          function serviceCarouselNext(key, basePath) {
+            var c = window.serviceCarousels[key];
+            if (!c) return;
+            c.idx = (c.idx + 1) % c.images.length;
+            document.getElementById('service-carousel-img-' + key).src = basePath + key + '/' + c.images[c.idx];
+          }
+        </script>
+      
           </div>
         </div>
       </div>
@@ -479,7 +530,8 @@
           </button>
           <div class="service-modal-body">
             <h3 class="modal-header">Sols industriels</h3>
-            <p>Revêtements durables et résistants à l'usure pour les locaux industriels</p>
+            <p>Ceci est une description détaillée pour la fenêtre modale des sols industriels. Elle peut différer de la description sur le tile.</p>
+            
           </div>
         </div>
       </div>
